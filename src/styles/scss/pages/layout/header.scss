@@ -1,0 +1,14 @@
+.header-wrapper {
+  // Flexbox properties
+  display: flex;
+  justify-content: flex-end;
+
+  // Dimensions
+  height: 69px;
+
+  // Padding
+  padding: 16px 16px 16px 25px;
+
+  // Grid area
+  grid-area: header;
+}

@@ -1,0 +1,33 @@
+/* MAIN DASHBARD WRAPPER */
+.main-dashboard__wrapper {
+  // Padding
+  padding: 32px;
+}
+
+.main-dashboard__key-stats {
+  // Flexbox properties
+  display: flex;
+}
+
+.main-dashboard__kpi-and-graph-wrapper {
+  // Flexbox properties
+  display: flex;
+  flex-direction: column;
+  flex: 60%;
+
+  min-width: 1000px;
+}
+
+.main-dashboard__kpi {
+  // Flexbox properties
+  display: flex;
+
+  gap: 10px;
+}
+
+.main-dashboard__leaderboard {
+  // Flexbox properties
+  display: flex;
+  flex-direction: column;
+  flex: 40%;
+}
