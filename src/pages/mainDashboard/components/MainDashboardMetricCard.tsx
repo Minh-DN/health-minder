@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
+
 import MetricCard from '@/components/MetricCard';
 import { MainDashboardMetricEnum, formatDurationInWords } from '@/shared';
-import { useCallback } from 'react';
 
 type MainDashboardMetricCardProps = {
   title: string;

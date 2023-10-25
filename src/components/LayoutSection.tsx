@@ -1,5 +1,6 @@
 import { Grid, styled, useTheme } from "@mui/material"
 import { ReactNode } from "react";
+
 import { Heading2 } from ".";
 
 // #region data types

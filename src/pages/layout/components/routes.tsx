@@ -1,5 +1,5 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BiotechIcon from '@mui/icons-material/Biotech';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 export const routes = [
   {

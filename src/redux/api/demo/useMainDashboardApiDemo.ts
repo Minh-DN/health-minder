@@ -1,7 +1,8 @@
+import dayjs from "dayjs";
+import { useCallback } from "react";
+
 import { MainDashboardMetricEnum, Metric } from "@/shared";
 import { generateFloat, generateNumber } from "@/shared";
-import { useCallback } from "react";
-import dayjs from "dayjs";
 
 export const useMainDashboardApiDemo = () => {
   // Metric Cards Data

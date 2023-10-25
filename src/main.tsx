@@ -1,9 +1,10 @@
-import App from './App';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom';
+
+import App from './App';
 import { store } from './redux';
 
 import '@/styles/scss/index.scss';

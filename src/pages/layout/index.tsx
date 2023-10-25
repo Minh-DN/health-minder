@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
+import { LayoutRouteProps, Outlet } from "react-router";
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import { LayoutRouteProps, Outlet } from "react-router";
 
 const Layout = (props: LayoutRouteProps) => {
   const theme = useTheme();

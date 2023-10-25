@@ -1,8 +1,8 @@
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import { Box, IconButton, useTheme, Autocomplete, TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import SearchIcon from "@mui/icons-material/Search";
+import { Autocomplete, Box, IconButton, TextField, useTheme } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 import { toggleColorMode } from '@/redux/slices';
 import { tokens } from '@/styles/theme';

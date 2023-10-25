@@ -1,6 +1,6 @@
 import { PaletteMode, createTheme } from "@mui/material";
-
 import { useSelector } from "react-redux";
+
 import { RootState } from "@/redux";
 import { Colors } from "@/shared";
 

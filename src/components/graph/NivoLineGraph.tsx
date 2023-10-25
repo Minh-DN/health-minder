@@ -1,7 +1,9 @@
-import { LineGraphType } from "@/shared";
-import { tokens } from "@/styles/theme";
 import { useTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
+
+import { LineGraphType } from "@/shared";
+import { tokens } from "@/styles/theme";
+
 import { getLineGraphTypeSpecificProps } from "./typeSpecificProps";
 
 // TODO: OPTIMISE ORGANISATION OF

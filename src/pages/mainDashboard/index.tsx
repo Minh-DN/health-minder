@@ -1,10 +1,12 @@
+import { useEffect, useState } from 'react'
+
 import { Heading1, LayoutSection } from '@/components';
-import MetricCard from '@/components/MetricCard';
 import { useMainDashboardApiDemo } from '@/redux';
 import { Metric } from '@/shared'
-import { useEffect, useState } from 'react'
+
 import '@/styles/scss/pages/mainDashboard.scss';
 import { useTheme } from '@mui/material';
+
 import { MainDashboardMetricCard } from './components';
 
 type Props = {}

@@ -1,6 +1,6 @@
+import { styled } from '@mui/material';
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import { styled, useTheme } from '@mui/material';
+
 import { Subheading2, Title1 } from '.';
 
 // TODO: change padding to theme padding

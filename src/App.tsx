@@ -3,9 +3,10 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useColorMode } from "@/styles";
 
 import '@/styles/scss/app.scss';
-import { Layout } from "./pages";
-import { Routes, Route } from 'react-router-dom';
 import { AppRoutes } from "./AppRoutes";
+import { Layout } from "./pages";
+
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   const theme = useColorMode();

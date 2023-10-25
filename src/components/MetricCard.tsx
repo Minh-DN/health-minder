@@ -1,9 +1,11 @@
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { styled, useTheme } from '@mui/material'
 import { useMemo } from 'react'
+
 import CustomCard from './CustomCard';
 
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+
 import { Heading1, Title1 } from '.';
 
 // TODO: REMOVE CONSOLE.LOG
