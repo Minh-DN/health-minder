@@ -1,14 +1,28 @@
 .header-wrapper {
   // Flexbox properties
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   // Dimensions
   height: 69px;
 
   // Padding
-  padding: 16px 16px 16px 25px;
+  padding: 16px 16px 16px 32px;
 
   // Grid area
   grid-area: header;
+}
+
+// Temporary - until search bar implementation
+.MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+.MuiInputBase-root {
+  padding: 0 !important;
+}
+.MuiAutocomplete-popper {
+  font-style: italic !important;
+}
+.MuiAutocomplete-endAdornment {
+  margin-top: 3px;
 }

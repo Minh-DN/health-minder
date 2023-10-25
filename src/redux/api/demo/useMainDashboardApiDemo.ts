@@ -2,7 +2,6 @@ import { MainDashboardMetricEnum, Metric } from "@/shared";
 import { generateFloat, generateNumber } from "@/shared";
 import { useCallback } from "react";
 import dayjs from "dayjs";
-import { da } from "@faker-js/faker";
 
 export const useMainDashboardApiDemo = () => {
   // Metric Cards Data
@@ -35,14 +34,6 @@ export const useMainDashboardApiDemo = () => {
             ...metric,
             value: generateFloat(720, 7200),
             priorPeriod: generateFloat(720, 7200),
-            priorPeriodDelta: generateNumber(-25, 25),
-          };
-          break;
-        case MainDashboardMetricEnum.AVERAGE_CALORIES_CONSUMED:
-          metric = {
-            ...metric,
-            value: generateNumber(1500, 2500),
-            priorPeriod: generateNumber(1500, 2500),
             priorPeriodDelta: generateNumber(-25, 25),
           };
           break;

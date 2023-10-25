@@ -2,9 +2,9 @@ import { useTheme } from "@mui/material";
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import MainDashBoard from "../mainDashboard";
+import { LayoutRouteProps, Outlet } from "react-router";
 
-const Layout = () => {
+const Layout = (props: LayoutRouteProps) => {
   const theme = useTheme();
 
   return (
@@ -15,7 +15,7 @@ const Layout = () => {
       <Header />
       <Sidebar />
       <main className='content-wrapper'>
-        <MainDashBoard />
+        <Outlet />
       </main>
     </div>
   );

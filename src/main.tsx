@@ -7,6 +7,7 @@ import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom';
 import { store } from './redux';
 
 import '@/styles/scss/index.scss';
+import { MainDashboard } from './pages';
 
 
 /** 
@@ -20,15 +21,11 @@ const router = createHashRouter(
     children: [
       {
         index: true,
-        element: <div>Home</div>
+        element: <MainDashboard />
       },
       {
-        path: "/team",
-        element: <div></div>
-      },
-      {
-        path: "/sign-in",
-        element: <div></div>
+        path: '/temp',
+        element: <div>Coming Soon ^_^</div>
       },
       {
         path: "*",

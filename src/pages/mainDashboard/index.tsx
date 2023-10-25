@@ -9,7 +9,7 @@ import { MainDashboardMetricCard } from './components';
 
 type Props = {}
 
-const MainDashBoard = (props: Props) => {
+const MainDashboard = (props: Props) => {
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const theme = useTheme();
 
@@ -26,7 +26,9 @@ const MainDashBoard = (props: Props) => {
   return (
     <div className='main-dashboard__wrapper'>
       {/* PAGE HEADER */}
-      <Heading1 theme={theme}>Main Dashboard</Heading1>
+      <div className='main-dashboard__heading-wrapper'>
+        <Heading1 theme={theme} color={theme.palette.secondary.main}>Health & Activity Snapshot</Heading1>
+      </div>
 
       {/* KEY STATS */}
       <div className='main-dashboard__key-stats'>
@@ -36,7 +38,7 @@ const MainDashBoard = (props: Props) => {
 
           {/* KPI CARDS */}
           {/* TODO: REMOVE REDUNDANT CSS CLASS NAME */}
-          {metrics && <LayoutSection title='Key Metrics' contentStyle={{ gap: '10px' }} noMargin={true}>
+          {metrics && <LayoutSection title='Performance Indicators' contentStyle={{ gap: '10px' }} noMargin={true}>
             {metrics.map((metricData, index) => {
               return (
                 <MainDashboardMetricCard
@@ -64,4 +66,4 @@ const MainDashBoard = (props: Props) => {
   )
 }
 
-export default MainDashBoard
+export default MainDashboard

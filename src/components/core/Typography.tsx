@@ -7,7 +7,7 @@ type TypographyProps = {
 
 // TODO: REMOVE MUI TYPOGRAPHY HEADINGS
 export const Heading1 = styled('h1')<TypographyProps>(({ theme, color, value }) => ({
-  fontWeight: theme.fontWeight.light,
+  fontWeight: theme.fontWeight.bolder,
   fontSize: theme.fontSize[5],
   lineHeight: theme.lineHeight[5],
   minHeight: theme.lineHeight[5],
@@ -16,7 +16,7 @@ export const Heading1 = styled('h1')<TypographyProps>(({ theme, color, value }) 
 }));
 
 export const Heading2 = styled('h2')(({ theme, color }) => ({
-  fontWeight: theme.fontWeight.normal,
+  fontWeight: theme.fontWeight.bold,
   fontSize: theme.fontSize[4],
   lineHeight: theme.lineHeight[4],
   minHeight: theme.lineHeight[4],

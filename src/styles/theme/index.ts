@@ -234,7 +234,7 @@ export const themeSettings = (mode: PaletteMode) => {
       2: "14px",
       3: "16px",
       4: "24px",
-      5: "40px",
+      5: "36px",
     },
     lineHeight: {
       1: "16px",
