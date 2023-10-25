@@ -49,6 +49,7 @@ export const useMainDashboardApiDemo = () => {
   }, []);
 
   // Line Graph Data
+  // @ts-ignore - temp ignore as currently working on this function
   const getMainDashboardLineGraphDemoData = useCallback(() => {
     // Labels for x-axis
     const labels: string[] = [];

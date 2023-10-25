@@ -6,7 +6,7 @@ type TypographyProps = {
 }
 
 // TODO: REMOVE MUI TYPOGRAPHY HEADINGS
-export const Heading1 = styled('h1')<TypographyProps>(({ theme, color, value }) => ({
+export const Heading1 = styled('h1')<TypographyProps>(({ theme, color }) => ({
   fontWeight: theme.fontWeight.bolder,
   fontSize: theme.fontSize[5],
   lineHeight: theme.lineHeight[5],

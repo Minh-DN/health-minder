@@ -11,7 +11,7 @@ import { MainDashboardMetricCard } from './components';
 
 type Props = {}
 
-const MainDashboard = (props: Props) => {
+const MainDashboard = () => {
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const theme = useTheme();
 

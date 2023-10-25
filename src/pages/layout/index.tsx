@@ -4,6 +4,7 @@ import { LayoutRouteProps, Outlet } from "react-router";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
+// @ts-ignore - props needed Layout can accept children
 const Layout = (props: LayoutRouteProps) => {
   const theme = useTheme();
 
