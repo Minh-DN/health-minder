@@ -4,6 +4,10 @@ import { useCallback } from "react";
 import { MainDashboardMetricEnum, Metric } from "@/shared";
 import { generateFloat, generateNumber } from "@/shared";
 
+enum MainDashboardLineGraphDataEnum {
+  SLEEP_TIME = "Sleep Time",
+}
+
 export const useMainDashboardApiDemo = () => {
   // Metric Cards Data
   const getMainDashboardMetricCardDemoData = useCallback((): Metric[] => {
@@ -49,7 +53,6 @@ export const useMainDashboardApiDemo = () => {
   }, []);
 
   // Line Graph Data
-  // @ts-ignore - temp ignore as currently working on this function
   const getMainDashboardLineGraphDemoData = useCallback(() => {
     // Labels for x-axis
     const labels: string[] = [];
@@ -61,16 +64,31 @@ export const useMainDashboardApiDemo = () => {
     const currentDate = dayjs();
     for (let i = 0; i < 7; i++) {
       const previousDay = currentDate.subtract(i, "day");
-      labels.push(previousDay.format("ddd DD-MM"));
+      labels.push(previousDay.format("DD-MM"));
     }
 
     // Generate demo data
     for (let i = 0; i < labels.length; i++) {
       sleepTimeSeries.push(generateFloat(6, 9));
     }
+
+    // Format data
+    const dataSeries = [
+      {
+        name: MainDashboardLineGraphDataEnum.SLEEP_TIME,
+        data: sleepTimeSeries,
+        color: "#6F6AF8",
+      },
+    ];
+
+    return {
+      labels,
+      dataSeries,
+    };
   }, []);
 
   return {
     getMainDashboardMetricCardDemoData,
+    getMainDashboardLineGraphDemoData,
   };
 };

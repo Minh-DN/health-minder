@@ -36,7 +36,7 @@ const MetricCardWrapper = styled(CustomCard)<MetricCardWrapperProps>(({ theme, p
   boxSizing: 'content-box',
   borderBottomRightRadius: 0,
   borderBottomLeftRadius: 0,
-  borderBottom: `${theme.spacing(3)} solid ${theme.palette.neutral.dark}`,
+  borderBottom: `${theme.spacing(3)} solid transparent`,
   '&:hover': {
     borderBottom: `${theme.spacing(3)} solid ${positive ? theme.palette.success.main : theme.palette.error.main}`,
   },

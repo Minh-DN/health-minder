@@ -7,20 +7,34 @@ import { Metric } from '@/shared'
 import '@/styles/scss/pages/mainDashboard.scss';
 import { useTheme } from '@mui/material';
 
-import { MainDashboardMetricCard } from './components';
+import { MainDashboardLineGraph, MainDashboardMetricCard } from './components';
+import { MainDashboardLineGraphDataSeries } from './components/MainDashboardLineGraph';
 
 const MainDashboard = () => {
+  // KPI cards data
   const [metrics, setMetrics] = useState<Metric[]>([]);
+
+  // Line graph data
+  const [graphLabels, setGraphLabels] = useState<string[]>([]);
+  const [graphDataSeries, setGraphDataSeries] = useState<MainDashboardLineGraphDataSeries[]>([]);
+
   const theme = useTheme();
 
   // Get functions that generate demo data
   const {
-    getMainDashboardMetricCardDemoData
+    getMainDashboardMetricCardDemoData,
+    getMainDashboardLineGraphDemoData,
   } = useMainDashboardApiDemo();
 
   // Use the demo data
   useEffect(() => {
+    // KPI cards data
     setMetrics(getMainDashboardMetricCardDemoData());
+
+    // Line graph data
+    const { labels, dataSeries } = getMainDashboardLineGraphDemoData();
+    setGraphLabels(labels);
+    setGraphDataSeries(dataSeries);
   }, []);
 
   return (
@@ -52,9 +66,12 @@ const MainDashboard = () => {
           </LayoutSection>}
 
           {/* LINE CHART */}
-          <div className='main-dashboard__line-graph'>
-
-          </div>
+          <LayoutSection showDivider={true} noMargin={true}>
+            <MainDashboardLineGraph
+              labels={graphLabels}
+              dataSeries={graphDataSeries}
+            />
+          </LayoutSection>
         </div>
 
         {/* LEADERBOARD */}

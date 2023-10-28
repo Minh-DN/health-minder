@@ -1,9 +1,10 @@
-import { LineGraphType } from "@/shared";
+import { LineGraphEnum } from "@/shared";
+import { useTheme } from "@mui/material";
 
 /* Return preset properties for each type of line graph */
-export const getLineGraphTypeSpecificProps = (type: LineGraphType) => {
+export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {
   switch (type) {
-    case LineGraphType.Main_Dashboard_Line_Graph:
+    case LineGraphEnum.Main_Dashboard_Line_Graph:
       return {
         // Base config
         xScale: { type: <const>"point" },
@@ -21,8 +22,8 @@ export const getLineGraphTypeSpecificProps = (type: LineGraphType) => {
         axisTop: null,
         axisRight: null,
         axisBottom: {
-          tickSize: 5,
-          tickPadding: 5,
+          tickSize: 0,
+          tickPadding: 10,
           tickRotation: 0,
           legend: "Date",
           legendOffset: 36,
@@ -30,14 +31,14 @@ export const getLineGraphTypeSpecificProps = (type: LineGraphType) => {
         },
         axisLeft: {
           tickSize: 0,
-          tickPadding: 10,
+          tickPadding: 20,
           tickRotation: 0,
           legend: "Hours",
-          legendOffset: -30,
+          legendOffset: -40,
           legendPosition: <const>"middle",
         },
         enableGridX: false,
-        enableGridY: true,
+        enableGridY: false,
         enableCrosshair: false,
 
         // Style config

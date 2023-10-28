@@ -1,6 +1,8 @@
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import GitHubIcon from '@mui/icons-material/GitHub';
+
 import { Autocomplete, Box, IconButton, TextField, useTheme } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
@@ -13,6 +15,8 @@ const Header = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
+
+  const githubRepoUrl = 'https://github.com/Minh-DN/health-minder';
 
   return (
     <header
@@ -45,13 +49,26 @@ const Header = () => {
       </Box>
 
       {/* ICONS MENU */}
-      <IconButton onClick={() => dispatch(toggleColorMode())}>
-        {theme.palette.mode === 'dark' ? (
-          <DarkModeOutlinedIcon />
-        ) : (
-          <LightModeOutlinedIcon />
-        )}
-      </IconButton>
+      <Box
+        component={'div'}
+        display="flex"
+      >
+        {/* SWITCH THEME ICON */}
+        <IconButton onClick={() => dispatch(toggleColorMode())}>
+          {theme.palette.mode === 'dark' ? (
+            <DarkModeOutlinedIcon />
+          ) : (
+            <LightModeOutlinedIcon />
+          )}
+        </IconButton>
+
+        {/* LINK TO GITHUB REPO */}
+        <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer">
+          <IconButton>
+            <GitHubIcon />
+          </IconButton>
+        </a>
+      </Box>
     </header>
   )
 }

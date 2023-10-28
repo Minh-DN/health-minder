@@ -51,7 +51,7 @@ const LayoutSection = ({ children, title, titleControls, noMargin, contentStyle,
 
   return (
     <SectionWrapper noMargin={noMargin}>
-      <SectionTitleWrapper>
+      <SectionTitleWrapper className="hello">
         {title && <SectionTitle>
           {/* TODO: ADD TITLE OR TYPOGRAPHY COMPONENT */}
           <Heading2 theme={theme}>{title}</Heading2>

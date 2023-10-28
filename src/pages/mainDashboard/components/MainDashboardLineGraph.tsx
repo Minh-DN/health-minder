@@ -1,11 +1,37 @@
-import React from 'react'
+import React, { useMemo } from 'react';
+import _ from "lodash";
+import { NivoLineGraph } from '@/components';
+import { LineGraphEnum } from '@/shared';
 
-// ts-ignore - temp ignore so I can deploy
-type MainDashboardLineGraphProps = {}
+export type MainDashboardLineGraphDataSeries = {
+  name: string;
+  data: number[];
+  color: string;
+}
 
-const MainDashboardLineGraph = React.memo(() => {
+type MainDashboardLineGraphProps = {
+  labels: string[];
+  dataSeries: MainDashboardLineGraphDataSeries[];
+}
+
+const MainDashboardLineGraph = React.memo(({ labels, dataSeries }: MainDashboardLineGraphProps) => {
+
+  // Format data in the format required by nivo line chart
+  const graphData = useMemo(() => {
+    return dataSeries.map(series => ({
+      id: series.name,
+      color: series.color,
+      data: labels.map((label, labelIndex) => ({ x: label, y: _.toNumber(series.data[labelIndex]) }))
+    }))
+  }, [labels, dataSeries]);
+
   return (
-    <div>MainDashboardLineGraph</div>
+    <NivoLineGraph
+      data={graphData}
+      type={LineGraphEnum.Main_Dashboard_Line_Graph}
+      dimensions={{ height: '350px' }}
+      style={{ padding: "0 0 5px 10px" }}
+    />
   )
 });
 

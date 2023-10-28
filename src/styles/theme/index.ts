@@ -193,7 +193,7 @@ export const themeSettings = (mode: PaletteMode) => {
             background: {
               default: colors.primary[500],
             },
-            divider: colors.grey[100],
+            divider: colors.grey[200],
           }
         : {
             // palette values for light mode
@@ -221,7 +221,7 @@ export const themeSettings = (mode: PaletteMode) => {
             background: {
               default: "#fcfcfc",
             },
-            divider: colors.grey[100],
+            divider: colors.grey[200],
           }),
     },
     typography: {
