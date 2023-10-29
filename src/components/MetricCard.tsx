@@ -25,7 +25,7 @@ type MetricCardWrapperProps = {
 
 type MetricCardProps = {
   title: string;
-  value: string;
+  value: string | number;
   priorPeriodDelta: number;
 }
 // #endregion
@@ -92,7 +92,7 @@ const MetricCard = ({ title, value, priorPeriodDelta }: MetricCardProps) => {
     <MetricCardWrapper padding={'2rem 0'} positive={positive}>
       <Title1>{title}</Title1>
       <MetricCardContent>
-        <Heading1 theme={theme} value={value}>{value}</Heading1>
+        <Heading1 theme={theme}>{value}</Heading1>
         {priorPeriodDelta !== undefined && <Delta deltaValue={priorPeriodDelta} />}
       </MetricCardContent>
     </MetricCardWrapper>

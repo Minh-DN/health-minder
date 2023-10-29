@@ -28,6 +28,7 @@ const MainDashboardLineGraph = React.memo(({ labels, dataSeries }: MainDashboard
   return (
     <NivoLineGraph
       data={graphData}
+      lineColors={graphData.map(data => data.color)}
       type={LineGraphEnum.Main_Dashboard_Line_Graph}
       dimensions={{ height: '350px' }}
       style={{ padding: "0 0 5px 10px" }}

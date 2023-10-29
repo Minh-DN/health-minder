@@ -5,6 +5,7 @@ import { LineGraphEnum } from "@/shared";
 import { tokens } from "@/styles/theme";
 
 import { getLineGraphTypeSpecificProps } from "./typeSpecificProps";
+import { getLineGraphCustomTooltip } from "./CustomTooltip";
 
 // TODO: OPTIMISE ORGANISATION OF TYPES LIKE GraphWrapperProps?
 type GraphWrapperProps = {
@@ -12,6 +13,14 @@ type GraphWrapperProps = {
   width?: number;
   bgColor: string;
   style?: React.CSSProperties;
+}
+
+type LineGraphProps = {
+  data: any;
+  type: LineGraphEnum;
+  dimensions: { height: string, width?: string };
+  style?: React.CSSProperties;
+  lineColors?: string[];
 }
 
 const GraphWrapper = styled('div')<GraphWrapperProps>(({ height, width, bgColor, style }) => ({
@@ -24,14 +33,7 @@ const GraphWrapper = styled('div')<GraphWrapperProps>(({ height, width, bgColor,
   ...style
 }))
 
-type LineGraphProps = {
-  data: any;
-  type: LineGraphEnum;
-  dimensions: { height: string, width?: string };
-  style?: React.CSSProperties;
-}
-
-const NivoLineGraph = ({ data, type, dimensions, style }: LineGraphProps) => {
+const NivoLineGraph = ({ data, type, dimensions, style, lineColors }: LineGraphProps) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const typeSpecificProps = getLineGraphTypeSpecificProps(type);
@@ -47,6 +49,7 @@ const NivoLineGraph = ({ data, type, dimensions, style }: LineGraphProps) => {
       <ResponsiveLine
         {...typeSpecificProps}
         data={data}
+        colors={lineColors ? lineColors : { "scheme": "nivo" }}
         theme={{
           tooltip: {
             container: {
@@ -68,6 +71,22 @@ const NivoLineGraph = ({ data, type, dimensions, style }: LineGraphProps) => {
           },
         }}
         useMesh={true}
+        tooltip={({ point }) => {
+          return (
+            <div
+              style={{
+                color: point.color,
+                background: colors.grey[900],
+                whiteSpace: 'nowrap',
+                padding: 12,
+                boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
+                borderRadius: '5px',
+              }}
+            >
+              {getLineGraphCustomTooltip(type, point)}
+            </div>
+          )
+        }}
       />
     </GraphWrapper>
 

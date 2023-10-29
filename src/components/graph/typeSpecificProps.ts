@@ -1,5 +1,4 @@
 import { LineGraphEnum } from "@/shared";
-import { useTheme } from "@mui/material";
 
 /* Return preset properties for each type of line graph */
 export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {
@@ -12,7 +11,7 @@ export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {
           type: <const>"linear",
           min: 0,
           max: 12,
-          stacked: true,
+          stacked: false,
           reverse: false,
         },
         yFormat: ">-.2f",

@@ -1,12 +1,6 @@
 import { styled } from "@mui/material";
 
-
-type TypographyProps = {
-  value?: string // TODO: ADD LOGIC FOR THIS WHEN UPDATING VALUE
-}
-
-// TODO: REMOVE MUI TYPOGRAPHY HEADINGS
-export const Heading1 = styled('h1')<TypographyProps>(({ theme, color }) => ({
+export const Heading1 = styled('h1')(({ theme, color }) => ({
   fontWeight: theme.fontWeight.bolder,
   fontSize: theme.fontSize[5],
   lineHeight: theme.lineHeight[5],

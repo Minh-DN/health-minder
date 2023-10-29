@@ -4,8 +4,12 @@ import { useCallback } from "react";
 import { MainDashboardMetricEnum, Metric } from "@/shared";
 import { generateFloat, generateNumber } from "@/shared";
 
-enum MainDashboardLineGraphDataEnum {
+export enum MainDashboardLineGraphDataEnum {
   SLEEP_TIME = "Sleep Time",
+  COMPUTER_SCREEN_TIME = "Computer Screen Time",
+  PHONE_SCREEN_TIME = "Phone Screen Time",
+  ACTIVE_TIME = "Active Time",
+  SEDENTARY_TIME = "Sedentary Time",
 }
 
 export const useMainDashboardApiDemo = () => {
@@ -37,8 +41,8 @@ export const useMainDashboardApiDemo = () => {
         case MainDashboardMetricEnum.AVERAGE_ACTIVE_TIME:
           metric = {
             ...metric,
-            value: generateFloat(720, 7200),
-            priorPeriod: generateFloat(720, 7200),
+            value: generateFloat(1800, 7200),
+            priorPeriod: generateFloat(1800, 7200),
             priorPeriodDelta: generateNumber(-25, 25),
           };
           break;
@@ -58,7 +62,11 @@ export const useMainDashboardApiDemo = () => {
     const labels: string[] = [];
 
     // Data series for y-axis
-    const sleepTimeSeries = [];
+    const sleepTimeSeries: number[] = [];
+    const computerTimeSeries: number[] = [];
+    const phoneTimeSeries: number[] = [];
+    const activeTimeSeries: number[] = [];
+    const sedentaryTimeSeries: number[] = [];
 
     // Generate demo label data - calculate the start and end dates for the previous 7 days
     const currentDate = dayjs();
@@ -70,6 +78,10 @@ export const useMainDashboardApiDemo = () => {
     // Generate demo data
     for (let i = 0; i < labels.length; i++) {
       sleepTimeSeries.push(generateFloat(6, 9));
+      computerTimeSeries.push(generateFloat(3, 12));
+      phoneTimeSeries.push(generateFloat(3, 7));
+      activeTimeSeries.push(generateFloat(0.5, 2));
+      sedentaryTimeSeries.push(generateFloat(5, 8));
     }
 
     // Format data
@@ -78,6 +90,26 @@ export const useMainDashboardApiDemo = () => {
         name: MainDashboardLineGraphDataEnum.SLEEP_TIME,
         data: sleepTimeSeries,
         color: "#6F6AF8",
+      },
+      {
+        name: MainDashboardLineGraphDataEnum.COMPUTER_SCREEN_TIME,
+        data: computerTimeSeries,
+        color: "#F8C8DC",
+      },
+      {
+        name: MainDashboardLineGraphDataEnum.PHONE_SCREEN_TIME,
+        data: phoneTimeSeries,
+        color: "#C23B22",
+      },
+      {
+        name: MainDashboardLineGraphDataEnum.ACTIVE_TIME,
+        data: activeTimeSeries,
+        color: "#16a085",
+      },
+      {
+        name: MainDashboardLineGraphDataEnum.SEDENTARY_TIME,
+        data: sedentaryTimeSeries,
+        color: "#f39c12",
       },
     ];
 

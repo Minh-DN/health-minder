@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import MetricCard from '@/components/MetricCard';
-import { MainDashboardMetricEnum, formatDurationInWords } from '@/shared';
+import { MainDashboardMetricEnum, formatDurationInWords, formatNumeric } from '@/shared';
 
 type MainDashboardMetricCardProps = {
   title: string;
@@ -15,6 +15,10 @@ const MainDashboardMetricCard = ({ title, value, priorPeriodDelta }: MainDashboa
       case MainDashboardMetricEnum.AVERAGE_SLEEP_TIME:
       case MainDashboardMetricEnum.AVERAGE_ACTIVE_TIME:
         return formatDurationInWords(input);
+
+      case MainDashboardMetricEnum.AVERAGE_STEPS_TAKEN:
+        return formatNumeric(input);
+
       default:
         return input.toString();
     }
