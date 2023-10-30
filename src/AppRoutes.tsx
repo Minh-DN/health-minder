@@ -1,4 +1,5 @@
-import { MainDashboard } from "./pages"
+import ComingSoon from './components/ComingSoon';
+import { MainDashboard } from './pages';
 
 export const AppRoutes = [
   {
@@ -6,7 +7,7 @@ export const AppRoutes = [
     element: <MainDashboard />,
   },
   {
-    path: '/temp',
-    element: <div>Coming Soon ^_^</div>
+    path: '/workout-history',
+    element: <ComingSoon />
   }
 ]

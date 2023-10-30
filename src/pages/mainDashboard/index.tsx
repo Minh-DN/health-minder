@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import '@/styles/scss/pages/mainDashboard.scss';
+
+import { useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 import { Heading1, LayoutSection } from '@/components';
-import { useMainDashboardApiDemo } from '@/redux';
-import { Metric } from '@/shared'
-
-import '@/styles/scss/pages/mainDashboard.scss';
-import { useTheme } from '@mui/material';
+import { MainDashboardLineGraphDemoData, useMainDashboardApiDemo } from '@/redux';
+import { Metric, RunnerStat } from '@/shared';
 
 import { MainDashboardLineGraph, MainDashboardMetricCard } from './components';
-import { MainDashboardLineGraphDataSeries } from './components/MainDashboardLineGraph';
+import RunnerLeaderboard from './components/RunnerLeaderboard';
 
 const MainDashboard = () => {
   // KPI cards data
@@ -16,7 +16,10 @@ const MainDashboard = () => {
 
   // Line graph data
   const [graphLabels, setGraphLabels] = useState<string[]>([]);
-  const [graphDataSeries, setGraphDataSeries] = useState<MainDashboardLineGraphDataSeries[]>([]);
+  const [graphDataSeries, setGraphDataSeries] = useState<MainDashboardLineGraphDemoData[]>([]);
+
+  // Runner leaderboard data
+  const [runnerLeaderboardStats, setRunnerLeaderboardStats] = useState<RunnerStat[]>([]);
 
   const theme = useTheme();
 
@@ -24,6 +27,7 @@ const MainDashboard = () => {
   const {
     getMainDashboardMetricCardDemoData,
     getMainDashboardLineGraphDemoData,
+    getRunnerLeaderboardData,
   } = useMainDashboardApiDemo();
 
   // Use the demo data
@@ -35,6 +39,9 @@ const MainDashboard = () => {
     const { labels, dataSeries } = getMainDashboardLineGraphDemoData();
     setGraphLabels(labels);
     setGraphDataSeries(dataSeries);
+
+    // Runner leaderboard data
+    setRunnerLeaderboardStats(getRunnerLeaderboardData());
   }, []);
 
   return (
@@ -51,8 +58,11 @@ const MainDashboard = () => {
         <div className='main-dashboard__kpi-and-graph-wrapper'>
 
           {/* KPI CARDS */}
-          {/* TODO: REMOVE REDUNDANT CSS CLASS NAME */}
-          {metrics && <LayoutSection title='Performance Indicators' contentStyle={{ gap: '10px' }} noMargin={true}>
+          {metrics && <LayoutSection
+            title='Performance Indicators'
+            contentStyle={{ gap: '10px' }}
+            noMargin={true}
+          >
             {metrics.map((metricData, index) => {
               return (
                 <MainDashboardMetricCard
@@ -66,7 +76,19 @@ const MainDashboard = () => {
           </LayoutSection>}
 
           {/* LINE CHART */}
-          <LayoutSection showDivider={true} noMargin={true}>
+          <LayoutSection
+            showDivider={true}
+            noMargin={true}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+            }}
+            contentStyle={{
+              gap: '10px',
+              flex: 1,
+            }}
+          >
             <MainDashboardLineGraph
               labels={graphLabels}
               dataSeries={graphDataSeries}
@@ -76,7 +98,9 @@ const MainDashboard = () => {
 
         {/* LEADERBOARD */}
         <div className='main-dashboard__leaderboard'>
-
+          <LayoutSection title='Monthly Run Leaderboard' noMargin={true}>
+            <RunnerLeaderboard data={runnerLeaderboardStats}></RunnerLeaderboard>
+          </LayoutSection>
         </div>
       </div>
     </div>

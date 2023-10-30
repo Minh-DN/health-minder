@@ -1,3 +1,3 @@
-import NivoLineGraph from "./NivoLineGraph";
+import NivoLineGraph from './NivoLineGraph';
 
 export { NivoLineGraph };

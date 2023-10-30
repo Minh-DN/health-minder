@@ -1,4 +1,6 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
+
+import { userAvatarArray } from '@/assets/userAvatars';
 
 /* NUMBER */
 export const generateNumber = (min: number, max: number): number => {
@@ -11,4 +13,9 @@ export const generateFloat = (
   precision: number = 0.01
 ): number => {
   return faker.number.float({ min, max, precision });
+};
+
+/* AVATAR */
+export const getRandomUserAvatar = () => {
+  return userAvatarArray[generateNumber(0, 8)];
 };

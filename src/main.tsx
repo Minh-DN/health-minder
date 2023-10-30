@@ -1,3 +1,4 @@
+import '@/styles/scss/index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -5,11 +6,9 @@ import { Provider } from 'react-redux';
 import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom';
 
 import App from './App';
-import { store } from './redux';
-
-import '@/styles/scss/index.scss';
+import ComingSoon from './components/ComingSoon';
 import { MainDashboard } from './pages';
-
+import { store } from './redux';
 
 /** 
  * Using HashRouter instead of BrowserRouter 
@@ -25,8 +24,8 @@ const router = createHashRouter(
         element: <MainDashboard />
       },
       {
-        path: '/temp',
-        element: <div>Coming Soon ^_^</div>
+        path: '/workout-history',
+        element: <ComingSoon />
       },
       {
         path: "*",

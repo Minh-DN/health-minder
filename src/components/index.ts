@@ -1,4 +1,4 @@
-import LayoutSection from "./LayoutSection";
+import LayoutSection from './LayoutSection';
 
 export * from "./core";
 export * from "./graph";

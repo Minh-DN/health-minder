@@ -6,6 +6,13 @@ body,
   min-width: 100%;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .layout-wrapper {
   display: grid;
   grid-template-columns: auto 1fr;

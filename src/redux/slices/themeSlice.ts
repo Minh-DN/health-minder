@@ -1,7 +1,7 @@
-import { PaletteMode } from "@mui/material";
-import { createSlice } from "@reduxjs/toolkit";
+import { PaletteMode } from '@mui/material';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { StorageKeysEnum } from "@/shared";
+import { StorageKeysEnum } from '@/shared';
 
 /**
  * Retrieves the initial theme mode from local storage, or defaults to 'dark'

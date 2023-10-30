@@ -1,19 +1,17 @@
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { IconButton, useTheme } from '@mui/material';
-import { NavLink } from "react-router-dom";
+import '@/styles/scss/pages/layout/sidebar.scss';
 
-import TempAvatarImage from '@/assets/temp-avatar.png';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import { IconButton, useTheme } from '@mui/material';
+import { useEffect, useState } from 'react';
+import SidebarMenu from 'react-bootstrap-sidebar-menu';
+import { NavLink } from 'react-router-dom';
+
+import TempAvatarImage from '@/assets/userAvatars/user-avatar-1.png';
+import { StorageKeysEnum } from '@/shared';
 import { tokens } from '@/styles/theme';
 
 import Avatar from './Avatar';
-
-import '@/styles/scss/pages/layout/sidebar.scss';
-import SidebarMenu from 'react-bootstrap-sidebar-menu';
-import { useEffect, useState } from 'react';
-
-import { StorageKeysEnum } from "@/shared";
-
-import { routes } from "./routes";
+import { routes } from './routes';
 
 const Sidebar = () => {
   const theme = useTheme();

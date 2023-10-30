@@ -1,8 +1,10 @@
-import dayjs from "dayjs";
-import { useCallback } from "react";
+import { faker } from '@faker-js/faker';
+import dayjs from 'dayjs';
+import { useCallback } from 'react';
 
-import { MainDashboardMetricEnum, Metric } from "@/shared";
-import { generateFloat, generateNumber } from "@/shared";
+import {
+    MainDashboardMetricEnum, Metric, RunnerStat, generateFloat, generateNumber, roundToPrecision
+} from '@/shared';
 
 export enum MainDashboardLineGraphDataEnum {
   SLEEP_TIME = "Sleep Time",
@@ -11,6 +13,14 @@ export enum MainDashboardLineGraphDataEnum {
   ACTIVE_TIME = "Active Time",
   SEDENTARY_TIME = "Sedentary Time",
 }
+
+// TODO: CONSIDER GROUPING TYPES LIKE THIS INTO THE SHARED FOLDER
+
+export type MainDashboardLineGraphDemoData = {
+  name: string;
+  data: number[];
+  color: string;
+};
 
 export const useMainDashboardApiDemo = () => {
   // Metric Cards Data
@@ -78,14 +88,14 @@ export const useMainDashboardApiDemo = () => {
     // Generate demo data
     for (let i = 0; i < labels.length; i++) {
       sleepTimeSeries.push(generateFloat(6, 9));
-      computerTimeSeries.push(generateFloat(3, 12));
+      computerTimeSeries.push(generateFloat(3, 11));
       phoneTimeSeries.push(generateFloat(3, 7));
       activeTimeSeries.push(generateFloat(0.5, 2));
       sedentaryTimeSeries.push(generateFloat(5, 8));
     }
 
     // Format data
-    const dataSeries = [
+    const dataSeries: MainDashboardLineGraphDemoData[] = [
       {
         name: MainDashboardLineGraphDataEnum.SLEEP_TIME,
         data: sleepTimeSeries,
@@ -119,8 +129,37 @@ export const useMainDashboardApiDemo = () => {
     };
   }, []);
 
+  // Runner Leaderboard Data
+  const getRunnerLeaderboardData = useCallback(() => {
+    const numberOfRunners = 15;
+    const runnerLeaderboardData: RunnerStat[] = [];
+
+    // Additional information for generating distance covered data
+    // To generate sensible number, runner will run max 20km per week
+    const numWeeksSinceMonthStart = new Date().getDate() / 7;
+
+    // Generate as many stat as specified by numberOfRunners
+    for (let i = 0; i < numberOfRunners; i++) {
+      const name = faker.person.firstName();
+      const distanceCovered = roundToPrecision(
+        generateFloat(5, 20) * numWeeksSinceMonthStart,
+        2
+      );
+      const averagePace = generateFloat(3, 7);
+      const runnerStat = new RunnerStat(name, distanceCovered, averagePace);
+
+      runnerLeaderboardData.push(runnerStat);
+    }
+
+    // Return result sorted by distance covered
+    return runnerLeaderboardData.sort(
+      (a, b) => b.distanceCovered - a.distanceCovered
+    );
+  }, []);
+
   return {
     getMainDashboardMetricCardDemoData,
     getMainDashboardLineGraphDemoData,
+    getRunnerLeaderboardData,
   };
 };

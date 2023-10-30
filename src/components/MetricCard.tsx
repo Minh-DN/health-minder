@@ -1,14 +1,13 @@
+
+
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { styled, useTheme } from '@mui/material'
-import { useMemo } from 'react'
+import { styled, useTheme } from '@mui/material';
+import { useMemo } from 'react';
 
 import CustomCard from './CustomCard';
 
-
-import { Heading1, Title1 } from '.';
-
-// TODO: REMOVE CONSOLE.LOG
+import { Heading1, Title1 } from './';
 
 // #region data types
 type DeltaWrapperProps = {
@@ -32,8 +31,6 @@ type MetricCardProps = {
 
 const MetricCardWrapper = styled(CustomCard)<MetricCardWrapperProps>(({ theme, positive }) => ({
   flex: 1,
-  //TODO: WHAT IS BOXSIZING
-  boxSizing: 'content-box',
   borderBottomRightRadius: 0,
   borderBottomLeftRadius: 0,
   borderBottom: `${theme.spacing(3)} solid transparent`,

@@ -1,33 +1,36 @@
-import { Grid, styled, useTheme } from "@mui/material"
-import { ReactNode } from "react";
+import { styled, useTheme } from '@mui/material';
+import { ReactNode } from 'react';
 
-import { Heading2 } from ".";
+import { WrapperProps } from '@/shared';
+
+import { Heading2 } from './';
 
 // #region data types
-type SectionWrapperProps = {
+type SectionWrapperProps = WrapperProps & {
   noMargin?: boolean;
 }
-// TODO: REVIEW OPTIONAL TYPES, IF OPTIONAL, IS DEFAULT NEEDED?
+
 type LayoutSectionProps = {
   children: ReactNode;
   title?: string;
   titleControls?: ReactNode;
   noMargin?: boolean;
+  style?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
   showDivider?: boolean;
 }
 // #endregion
 
-const SectionWrapper = styled('div')<SectionWrapperProps>(({ noMargin }) => ({
+const SectionWrapper = styled('div')<SectionWrapperProps>(({ noMargin, style }) => ({
   margin: noMargin ? 0 : '1rem',
+  ...style,
 }))
 
-// TODO: WHY USING GRID INSTEAD OF DIV
-const SectionTitleWrapper = styled(Grid)({
+const SectionTitleWrapper = styled('div')({
   padding: '0.5rem 0'
 })
 
-const SectionTitle = styled(Grid)(({ theme }) => ({
+const SectionTitle = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -42,25 +45,23 @@ const Divider = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.divider
 }))
 
-const SectionContent = styled(Grid)({
-  //padding: '0.5rem'
+const SectionContent = styled('div')({
+  display: 'flex',
 })
 
-const LayoutSection = ({ children, title, titleControls, noMargin, contentStyle, showDivider }: LayoutSectionProps) => {
+const LayoutSection = ({ children, title, titleControls, noMargin, contentStyle, showDivider, style }: LayoutSectionProps) => {
   const theme = useTheme();
 
   return (
-    <SectionWrapper noMargin={noMargin}>
+    <SectionWrapper noMargin={noMargin} style={style}>
       <SectionTitleWrapper className="hello">
         {title && <SectionTitle>
-          {/* TODO: ADD TITLE OR TYPOGRAPHY COMPONENT */}
           <Heading2 theme={theme}>{title}</Heading2>
           {titleControls && <SectionTitleControls>{titleControls}</SectionTitleControls>}
         </SectionTitle>}
       </SectionTitleWrapper>
       {(title || showDivider) && <Divider />}
-      {/* TODO: WHAT IS CONTAINER PROP IN THE BELOW? */}
-      {children && <SectionContent container style={contentStyle}>
+      {children && <SectionContent style={contentStyle}>
         {children}
       </SectionContent>}
     </SectionWrapper>

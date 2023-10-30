@@ -1,5 +1,7 @@
 import '@/styles/scss/pages/layout/sidebar.scss';
 
+// TODO: SWITCH TO USING CORE/AVATAR
+
 type AvatarProps = {
   src: string
 }
@@ -11,7 +13,7 @@ const Avatar = ({ src }: AvatarProps) => {
         src={src}
         className='avatar-image'
       />
-      <div className='avatar-username'>Gong Yoo</div>
+      <div className='avatar-username'>Jake Dao</div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { LineGraphEnum } from "@/shared";
+import { LineGraphEnum } from '@/shared';
 
 /* Return preset properties for each type of line graph */
 export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {

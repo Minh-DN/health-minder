@@ -1,9 +1,8 @@
 import { styled } from '@mui/material';
 import React from 'react';
 
-import { Subheading2, Title1 } from '.';
 
-// TODO: change padding to theme padding
+import { Subheading2, Title1 } from './';
 
 // #region data types
 type CustomCardWrapperProps = {
@@ -46,13 +45,13 @@ const CustomCardWrapper = styled('div')<CustomCardWrapperProps>(({ transparent }
   })
 }))
 
-const CustomCardTitleWrapper = styled('div')<CustomCardTitleWrapperProps>(({ noPadding }) => ({
+const CustomCardTitleWrapper = styled('div')<CustomCardTitleWrapperProps>(({ theme, noPadding }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'flex-start',
 
-  padding: noPadding ? 0 : '8px',
+  padding: noPadding ? 0 : theme.spacing(8),
   paddingBottom: 0,
   color: 'red',
 }))

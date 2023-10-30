@@ -1,11 +1,14 @@
-import { LineGraphEnum, formatDurationInWords } from '@/shared';
+import { Datum } from '@nivo/line';
+
+import { formatDurationInWords } from '@/shared';
+
+type LineGraphTooltipProps = {
+  pointData: Datum
+}
 
 const secondsInAnHour = 3600;
 
-// TODO: INVESTIGATE SOLUTION FOR TYPE OF {pointData}
-
-// @ts-ignore
-export const MainDashboardLineGraphTooltip = ({ pointData }) => {
+export const MainDashboardLineGraphTooltip = ({ pointData }: LineGraphTooltipProps) => {
   const { x, y } = pointData.data;
   const formattedTime = formatDurationInWords(y * secondsInAnHour);
 
@@ -13,18 +16,7 @@ export const MainDashboardLineGraphTooltip = ({ pointData }) => {
     <>
       <b>Date:</b>{` ${x}`}
       <br />
-      <b>Time:</b>{` ${formattedTime}`}
+      <b>Duration:</b>{` ${formattedTime}`}
     </>
   )
-}
-
-// @ts-ignore
-export const getLineGraphCustomTooltip = (type: LineGraphEnum, pointData) => {
-  switch (type) {
-    case LineGraphEnum.Main_Dashboard_Line_Graph:
-      return <MainDashboardLineGraphTooltip pointData={pointData} />
-
-    default:
-      break
-  }
 }

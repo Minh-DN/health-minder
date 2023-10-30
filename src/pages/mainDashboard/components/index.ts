@@ -1,4 +1,4 @@
-import MainDashboardMetricCard from "./MainDashboardMetricCard";
-import MainDashboardLineGraph from "./MainDashboardLineGraph";
+import MainDashboardLineGraph from './MainDashboardLineGraph';
+import MainDashboardMetricCard from './MainDashboardMetricCard';
 
 export { MainDashboardMetricCard, MainDashboardLineGraph };

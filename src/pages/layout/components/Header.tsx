@@ -1,15 +1,15 @@
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import SearchIcon from "@mui/icons-material/Search";
-import GitHubIcon from '@mui/icons-material/GitHub';
+import '@/styles/scss/pages/layout/header.scss';
 
+
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, Box, IconButton, TextField, useTheme } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { toggleColorMode } from '@/redux/slices';
 import { tokens } from '@/styles/theme';
-
-import '@/styles/scss/pages/layout/header.scss';
 
 const Header = () => {
   const theme = useTheme();

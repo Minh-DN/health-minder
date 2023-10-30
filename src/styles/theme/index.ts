@@ -1,8 +1,8 @@
-import { PaletteMode, createTheme } from "@mui/material";
-import { useSelector } from "react-redux";
+import { PaletteMode, createTheme } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-import { RootState } from "@/redux";
-import { Colors } from "@/shared";
+import { RootState } from '@/redux';
+import { Colors } from '@/shared';
 
 // Extend MUI Theme
 declare module "@mui/material/styles" {
@@ -227,6 +227,9 @@ export const themeSettings = (mode: PaletteMode) => {
     typography: {
       fontFamily: ["Noto Sans", "sans-serif"].join(","),
       fontSize: 12,
+      button: {
+        textTransform: <const>"none",
+      },
     },
     spacing: 1,
     fontSize: {

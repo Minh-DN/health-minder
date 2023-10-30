@@ -1,23 +1,44 @@
-import React, { useMemo } from 'react';
-import _ from "lodash";
+import { styled, useTheme } from '@mui/material';
+import { Datum } from '@nivo/line';
+import _ from 'lodash';
+import React, { useEffect, useMemo, useState } from 'react';
+
 import { NivoLineGraph } from '@/components';
-import { LineGraphEnum } from '@/shared';
+import DataSeriesToggler from '@/components/graph/DataSeriesToggler';
+import { MainDashboardLineGraphDemoData } from '@/redux';
+import { LineGraphEnum, WrapperProps } from '@/shared';
+import { tokens } from '@/styles';
 
 export type MainDashboardLineGraphDataSeries = {
-  name: string;
-  data: number[];
-  color: string;
-}
+  id: string,
+  data: Datum[],
+  color: string
+};
 
 type MainDashboardLineGraphProps = {
   labels: string[];
-  dataSeries: MainDashboardLineGraphDataSeries[];
+  dataSeries: MainDashboardLineGraphDemoData[];
 }
 
+const MainDashboardLineGraphWrapper = styled('div')<WrapperProps>(({ theme, bgColor }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+
+  marginTop: '20px',
+  backgroundColor: bgColor,
+  borderRadius: '7px',
+  boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
+  width: '100%',
+  padding: `0 0 ${theme.spacing(3)} ${theme.spacing(8)}`
+}))
+
 const MainDashboardLineGraph = React.memo(({ labels, dataSeries }: MainDashboardLineGraphProps) => {
+  const [selectedDataSeries, setSelectedDataSeries] = useState<MainDashboardLineGraphDataSeries[]>([]);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   // Format data in the format required by nivo line chart
-  const graphData = useMemo(() => {
+  const graphData: MainDashboardLineGraphDataSeries[] = useMemo(() => {
     return dataSeries.map(series => ({
       id: series.name,
       color: series.color,
@@ -25,14 +46,46 @@ const MainDashboardLineGraph = React.memo(({ labels, dataSeries }: MainDashboard
     }))
   }, [labels, dataSeries]);
 
+  // Update the dataSeries state when graphData is available
+  useEffect(() => {
+    setSelectedDataSeries(graphData);
+  }, [graphData]);
+
+  // Handle data series toggling
+  const handleToggleDataSeries = (id: string) => {
+    setSelectedDataSeries((prevSelectedDataSeries) => {
+      const isSeriesSelected = prevSelectedDataSeries.some((series) => series.id === id);
+
+      if (isSeriesSelected) {
+        // Data series is selected, so remove it
+        return prevSelectedDataSeries.filter((series) => series.id !== id);
+      } else {
+        // Data series is not selected, so add it
+        const dataSeriesToAdd = graphData.find((series) => series.id === id);
+        if (dataSeriesToAdd) {
+          return [...prevSelectedDataSeries, dataSeriesToAdd];
+        } else {
+          return prevSelectedDataSeries; // Return the same array if not found
+        }
+      }
+    });
+  };
+
   return (
-    <NivoLineGraph
-      data={graphData}
-      lineColors={graphData.map(data => data.color)}
-      type={LineGraphEnum.Main_Dashboard_Line_Graph}
-      dimensions={{ height: '350px' }}
-      style={{ padding: "0 0 5px 10px" }}
-    />
+    <MainDashboardLineGraphWrapper bgColor={colors.primary[400]}>
+      <DataSeriesToggler
+        allDataSeries={graphData}
+        selectedDataSeries={selectedDataSeries}
+        toggleDataSeries={handleToggleDataSeries}
+      />
+      <NivoLineGraph
+        dataSeries={selectedDataSeries}
+        lineColors={selectedDataSeries.map(data => data.color)}
+        type={LineGraphEnum.Main_Dashboard_Line_Graph}
+        dimensions={{ height: '350px' }}
+        style={{ marginTop: theme.spacing(5) }}
+      />
+    </MainDashboardLineGraphWrapper>
   )
 });
 

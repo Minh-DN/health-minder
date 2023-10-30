@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from '@mui/material';
 
 export const Heading1 = styled('h1')(({ theme, color }) => ({
   fontWeight: theme.fontWeight.bolder,
@@ -29,30 +29,28 @@ export const Title1 = styled('h3')(({ theme, color }) => ({
 
 export const Subheading1 = styled('h4')(({ theme, color }) => ({
   fontWeight: theme.fontWeight.bolder,
-  fontSize: theme.fontSize[2],
-  lineHeight: theme.lineHeight[2],
-  minHeight: theme.lineHeight[2],
-  color: color ? color : theme.palette.neutral.light,
-  fontFamily: 'Avenir-Black',
+  fontSize: theme.fontSize[4],
+  lineHeight: theme.lineHeight[4],
+  minHeight: theme.lineHeight[4],
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
 export const Subheading2 = styled('h4')(({ theme, color }) => ({
-  fontWeight: theme.fontWeight.lighter,
-  fontSize: theme.fontSize[2],
-  lineHeight: theme.lineHeight[2],
-  minHeight: theme.lineHeight[2],
-  color: color ? color : theme.palette.neutral.light,
+  fontWeight: theme.fontWeight.bold,
+  fontSize: theme.fontSize[1],
+  lineHeight: theme.lineHeight[1],
+  minHeight: theme.lineHeight[1],
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
-export const BodyText1 = styled('h4')(({ theme, color }) => ({
+export const BodyText1 = styled('h5')(({ theme, color }) => ({
   fontWeight: theme.fontWeight.normal,
   fontSize: theme.fontSize[2],
   lineHeight: theme.lineHeight[1],
   minHeight: theme.lineHeight[1],
-  color: color ? color : theme.palette.neutral.light,
-  fontFamily: 'Avenir-Heavy',
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
@@ -61,8 +59,7 @@ export const BodyText2 = styled('h4')(({ theme, color }) => ({
   fontSize: theme.fontSize[2],
   lineHeight: theme.lineHeight[1],
   minHeight: theme.lineHeight[1],
-  color: color ? color : theme.palette.neutral.light,
-  fontFamily: 'Avenir-Light',
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
@@ -71,8 +68,7 @@ export const BodyText3 = styled('h4')(({ theme, color }) => ({
   fontSize: theme.fontSize[1],
   lineHeight: theme.lineHeight[1],
   minHeight: theme.lineHeight[1],
-  color: color ? color : theme.palette.neutral.light,
-  fontFamily: 'Avenir-Black',
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
@@ -81,7 +77,7 @@ export const BodyText4 = styled('h4')(({ theme, color }) => ({
   fontSize: theme.fontSize[1],
   lineHeight: theme.lineHeight[1],
   minHeight: theme.lineHeight[1],
-  color: color ? color : theme.palette.neutral.light,
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));
 
@@ -90,7 +86,6 @@ export const BodyText5 = styled('h4')(({ theme, color }) => ({
   fontSize: theme.fontSize[1],
   lineHeight: theme.lineHeight[1],
   minHeight: theme.lineHeight[1],
-  color: color ? color : theme.palette.neutral.light,
-  fontFamily: 'Avenir-Book',
+  color: color ? color : theme.palette.neutral.dark,
   margin: 0,
 }));

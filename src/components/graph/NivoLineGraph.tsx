@@ -1,39 +1,38 @@
-import { styled, useTheme } from "@mui/material";
-import { ResponsiveLine } from "@nivo/line";
+import { styled, useTheme } from '@mui/material';
+import { ResponsiveLine } from '@nivo/line';
 
-import { LineGraphEnum } from "@/shared";
-import { tokens } from "@/styles/theme";
+import {
+    MainDashboardLineGraphDataSeries
+} from '@/pages/mainDashboard/components/MainDashboardLineGraph';
+import { LineGraphEnum, WrapperProps } from '@/shared';
+import { tokens } from '@/styles/theme';
 
-import { getLineGraphTypeSpecificProps } from "./typeSpecificProps";
-import { getLineGraphCustomTooltip } from "./CustomTooltip";
+import { getLineGraphCustomTooltip } from './lineGraphUtils';
+import { getLineGraphTypeSpecificProps } from './typeSpecificProps';
 
-// TODO: OPTIMISE ORGANISATION OF TYPES LIKE GraphWrapperProps?
-type GraphWrapperProps = {
+type GraphWrapperProps = WrapperProps & {
   height: string;
-  width?: number;
-  bgColor: string;
+  width?: string;
   style?: React.CSSProperties;
 }
 
 type LineGraphProps = {
-  data: any;
+  dataSeries: MainDashboardLineGraphDataSeries[]; // TODO: WHEN HAVE TIME, LOOK INTO MORE APPROPRIATE TYPE FOR THIS (@nivo/line/index.d.ts)
   type: LineGraphEnum;
   dimensions: { height: string, width?: string };
   style?: React.CSSProperties;
   lineColors?: string[];
 }
 
-const GraphWrapper = styled('div')<GraphWrapperProps>(({ height, width, bgColor, style }) => ({
+const GraphWrapper = styled('div')<GraphWrapperProps>(({ height, width, style }) => ({
   height: height,
   width: width ? width : '100%',
-  marginTop: '20px',
-  backgroundColor: bgColor,
-  borderRadius: '7px',
-  boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
-  ...style
+  ...style,
+  flex: `1 1 ${height}`
 }))
 
-const NivoLineGraph = ({ data, type, dimensions, style, lineColors }: LineGraphProps) => {
+const NivoLineGraph = ({ dataSeries, type, dimensions, lineColors, style }: LineGraphProps) => {
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const typeSpecificProps = getLineGraphTypeSpecificProps(type);
@@ -43,12 +42,11 @@ const NivoLineGraph = ({ data, type, dimensions, style, lineColors }: LineGraphP
     // Nivo graphs must be wrapped in a component with explicitly defined height
     <GraphWrapper
       height={height}
-      bgColor={colors.primary[400]}
       style={style}
     >
       <ResponsiveLine
         {...typeSpecificProps}
-        data={data}
+        data={dataSeries}
         colors={lineColors ? lineColors : { "scheme": "nivo" }}
         theme={{
           tooltip: {

@@ -1,12 +1,12 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
-
-import { useColorMode } from "@/styles";
-
 import '@/styles/scss/app.scss';
-import { AppRoutes } from "./AppRoutes";
-import { Layout } from "./pages";
 
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+
+import { useColorMode } from '@/styles';
+
+import { AppRoutes } from './AppRoutes';
+import { Layout } from './pages';
 
 const App = () => {
   const theme = useColorMode();

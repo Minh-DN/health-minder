@@ -13,13 +13,14 @@
 
   // Spacing properties
   margin-top: 30px;
+  gap: 20px;
 }
 
 .main-dashboard__kpi-and-graph-wrapper {
   // Flexbox properties
   display: flex;
   flex-direction: column;
-  flex: 60%;
+  flex: 70%;
 
   min-width: 700px;
 }
@@ -35,5 +36,6 @@
   // Flexbox properties
   display: flex;
   flex-direction: column;
-  flex: 40%;
+  flex: 30%;
+  min-width: 330px;
 }

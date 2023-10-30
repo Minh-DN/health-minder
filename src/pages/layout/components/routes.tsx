@@ -1,5 +1,5 @@
-import BiotechIcon from '@mui/icons-material/Biotech';
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 export const routes = [
   {
@@ -8,8 +8,8 @@ export const routes = [
     link: "/",
   },
   {
-    icon: <BiotechIcon />,
-    label: 'Coming Soon',
-    link: '/temp'
+    icon: <FitnessCenterIcon />,
+    label: 'Workout History',
+    link: '/workout-history'
   },
 ];
