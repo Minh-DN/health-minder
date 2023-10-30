@@ -1,10 +1,15 @@
-import { faker } from '@faker-js/faker';
-import dayjs from 'dayjs';
-import { useCallback } from 'react';
+import { faker } from "@faker-js/faker";
+import dayjs from "dayjs";
+import { useCallback } from "react";
 
 import {
-    MainDashboardMetricEnum, Metric, RunnerStat, generateFloat, generateNumber, roundToPrecision
-} from '@/shared';
+  MainDashboardMetricEnum,
+  Metric,
+  RunnerStat,
+  generateFloat,
+  generateNumber,
+  roundToPrecision,
+} from "@/shared";
 
 export enum MainDashboardLineGraphDataEnum {
   SLEEP_TIME = "Sleep Time",
@@ -82,7 +87,7 @@ export const useMainDashboardApiDemo = () => {
     const currentDate = dayjs();
     for (let i = 0; i < 7; i++) {
       const previousDay = currentDate.subtract(i, "day");
-      labels.push(previousDay.format("DD-MM"));
+      labels.unshift(previousDay.format("DD-MM"));
     }
 
     // Generate demo data
