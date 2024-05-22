@@ -2,19 +2,15 @@ package com.healthminder.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
+@EnableMongoRepositories(basePackages = "com.healthminder.backend.repository")
+@ComponentScan(basePackages = "com.healthminder")
 public class Application {
 
 	public static void main(String[] args) {
-		Dotenv dotenv = Dotenv.load();
-		String mongodbUri = dotenv.get("MONGODB_URI");
-		if (mongodbUri == null) {
-			throw new IllegalStateException("MONGODB_URI must be set in the .env file");
-		}
-		System.setProperty("MONGODB_URI", mongodbUri);
-
 		SpringApplication.run(Application.class, args);
 	}
 
