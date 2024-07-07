@@ -14,25 +14,24 @@ type GraphWrapperProps = WrapperProps & {
   height: string;
   width?: string;
   style?: React.CSSProperties;
-}
+};
 
 type LineGraphProps = {
   dataSeries: MainDashboardLineGraphDataSeries[]; // TODO: WHEN HAVE TIME, LOOK INTO MORE APPROPRIATE TYPE FOR THIS (@nivo/line/index.d.ts)
   type: LineGraphEnum;
-  dimensions: { height: string, width?: string };
+  dimensions: { height: string; width?: string };
   style?: React.CSSProperties;
   lineColors?: string[];
-}
+};
 
 const GraphWrapper = styled('div')<GraphWrapperProps>(({ height, width, style }) => ({
   height: height,
   width: width ? width : '100%',
   ...style,
   flex: `1 1 ${height}`
-}))
+}));
 
 const NivoLineGraph = ({ dataSeries, type, dimensions, lineColors, style }: LineGraphProps) => {
-
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const typeSpecificProps = getLineGraphTypeSpecificProps(type);
@@ -40,19 +39,16 @@ const NivoLineGraph = ({ dataSeries, type, dimensions, lineColors, style }: Line
 
   return (
     // Nivo graphs must be wrapped in a component with explicitly defined height
-    <GraphWrapper
-      height={height}
-      style={style}
-    >
+    <GraphWrapper height={height} style={style}>
       <ResponsiveLine
         {...typeSpecificProps}
         data={dataSeries}
-        colors={lineColors ? lineColors : { "scheme": "nivo" }}
+        colors={lineColors ? lineColors : { scheme: 'nivo' }}
         theme={{
           tooltip: {
             container: {
               background: colors.grey[900]
-            },
+            }
           },
           axis: {
             ticks: {
@@ -65,8 +61,8 @@ const NivoLineGraph = ({ dataSeries, type, dimensions, lineColors, style }: Line
                 fill: colors.grey[100],
                 fontWeight: theme.fontWeight.bolder
               }
-            },
-          },
+            }
+          }
         }}
         useMesh={true}
         tooltip={({ point }) => {
@@ -78,16 +74,15 @@ const NivoLineGraph = ({ dataSeries, type, dimensions, lineColors, style }: Line
                 whiteSpace: 'nowrap',
                 padding: 12,
                 boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
-                borderRadius: '5px',
+                borderRadius: '5px'
               }}
             >
               {getLineGraphCustomTooltip(type, point)}
             </div>
-          )
+          );
         }}
       />
     </GraphWrapper>
-
   );
 };
 

@@ -9,7 +9,7 @@ import numeral from 'numeral';
  * @param {string} format (numeral format)
  * @returns {number} formatted value
  */
-export const formatNumeric = (value: number, format: string = "0,0") => {
+export const formatNumeric = (value: number, format: string = '0,0') => {
   return numeral(value).format(format);
 };
 
@@ -48,7 +48,7 @@ export const getHourMinuteSecondFromDuration = (time: number) => {
 
   return {
     hours,
-    minutes,
+    minutes
   };
 };
 
@@ -66,7 +66,7 @@ export const formatDurationInWords = (time: number) => {
   if (hours) result.push(`${hours}h`);
   if (minutes) result.push(`${minutes}m`);
 
-  return result.join(" ");
+  return result.join(' ');
 };
 
 /* FORMAT STRING */

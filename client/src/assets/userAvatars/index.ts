@@ -17,5 +17,5 @@ export const userAvatarArray = [
   UserAvatar6,
   UserAvatar7,
   UserAvatar8,
-  UserAvatar9,
+  UserAvatar9
 ];

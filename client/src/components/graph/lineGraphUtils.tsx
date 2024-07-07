@@ -7,9 +7,9 @@ import { MainDashboardLineGraphTooltip } from './CustomTooltip';
 export const getLineGraphCustomTooltip = (type: LineGraphEnum, pointData: Datum) => {
   switch (type) {
     case LineGraphEnum.Main_Dashboard_Line_Graph:
-      return <MainDashboardLineGraphTooltip pointData={pointData} />
+      return <MainDashboardLineGraphTooltip pointData={pointData} />;
 
     default:
-      break
+      break;
   }
-}
+};

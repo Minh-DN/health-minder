@@ -16,7 +16,7 @@ const Header = () => {
   const colors = tokens(theme.palette.mode);
   const dispatch = useDispatch();
 
-  const githubRepoUrl = 'https://github.com/Minh-DN/health-minder';
+  const GITHUB_REPO_URL = 'https://github.com/Minh-DN/health-minder';
 
   return (
     <header
@@ -26,21 +26,21 @@ const Header = () => {
       {/* SEARCH BAR */}
       <Box
         component={'div'}
-        display="flex"
-        borderRadius="3px"
+        display='flex'
+        borderRadius='3px'
         sx={{
           backgroundColor: colors.primary[400],
-          padding: "0 12px",
-          width: "250px"
+          padding: '0 12px',
+          width: '250px'
         }}
       >
         <Autocomplete
-          id="search-bar"
+          id='search-bar'
           freeSolo
-          options={["Search is coming soon"]}
+          options={['Search is coming soon']}
           sx={{ flex: 1 }}
           renderInput={(params) => {
-            return <TextField {...params} placeholder="Search" />;
+            return <TextField {...params} placeholder='Search' />;
           }}
         />
         <IconButton sx={{ p: 1 }}>
@@ -49,28 +49,21 @@ const Header = () => {
       </Box>
 
       {/* ICONS MENU */}
-      <Box
-        component={'div'}
-        display="flex"
-      >
+      <Box component={'div'} display='flex'>
         {/* SWITCH THEME ICON */}
         <IconButton onClick={() => dispatch(toggleColorMode())}>
-          {theme.palette.mode === 'dark' ? (
-            <DarkModeOutlinedIcon />
-          ) : (
-            <LightModeOutlinedIcon />
-          )}
+          {theme.palette.mode === 'dark' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
         </IconButton>
 
         {/* LINK TO GITHUB REPO */}
-        <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer">
+        <a href={GITHUB_REPO_URL} target='_blank' rel='noopener noreferrer'>
           <IconButton>
             <GitHubIcon />
           </IconButton>
         </a>
       </Box>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -5,12 +5,12 @@ type AvatarImgProps = {
   diameter: string;
   borderColor?: string;
   sectionName: string;
-}
+};
 
 type AvatarImgWrapperProps = {
   diameter: string;
   borderColor?: string;
-}
+};
 
 const AvatarImgWrapper = styled('img')<AvatarImgWrapperProps>(({ diameter, borderColor }) => ({
   width: diameter,
@@ -19,9 +19,8 @@ const AvatarImgWrapper = styled('img')<AvatarImgWrapperProps>(({ diameter, borde
   objectFit: 'cover',
   objectPosition: 'center',
   border: '2px solid',
-  borderColor: `${borderColor ? borderColor : 'inherit'}`,
+  borderColor: `${borderColor ? borderColor : 'inherit'}`
 }));
-
 
 const AvatarImg = ({ src, diameter, borderColor, sectionName }: AvatarImgProps) => {
   return (
@@ -31,7 +30,7 @@ const AvatarImg = ({ src, diameter, borderColor, sectionName }: AvatarImgProps) 
       diameter={diameter}
       borderColor={borderColor}
     />
-  )
-}
+  );
+};
 
-export default AvatarImg
+export default AvatarImg;

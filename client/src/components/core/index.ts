@@ -1,2 +1,2 @@
-export * from "./Typography";
-export * from "./Avatar";
+export * from './Typography';
+export * from './Avatar';

@@ -6,15 +6,15 @@ export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {
     case LineGraphEnum.Main_Dashboard_Line_Graph:
       return {
         // Base config
-        xScale: { type: <const>"point" },
+        xScale: { type: <const>'point' },
         yScale: {
-          type: <const>"linear",
+          type: <const>'linear',
           min: 0,
           max: 12,
           stacked: false,
-          reverse: false,
+          reverse: false
         },
-        yFormat: ">-.2f",
+        yFormat: '>-.2f',
         margin: { top: 20, right: 50, bottom: 50, left: 50 },
 
         // Grid and Axes config
@@ -24,31 +24,31 @@ export const getLineGraphTypeSpecificProps = (type: LineGraphEnum) => {
           tickSize: 0,
           tickPadding: 10,
           tickRotation: 0,
-          legend: "Date",
+          legend: 'Date',
           legendOffset: 36,
-          legendPosition: <const>"middle",
+          legendPosition: <const>'middle'
         },
         axisLeft: {
           tickSize: 0,
           tickPadding: 20,
           tickRotation: 0,
-          legend: "Hours",
+          legend: 'Hours',
           legendOffset: -40,
-          legendPosition: <const>"middle",
+          legendPosition: <const>'middle'
         },
         enableGridX: false,
         enableGridY: false,
         enableCrosshair: false,
 
         // Style config
-        curve: <const>"natural",
+        curve: <const>'natural',
 
         // Points config
         pointSize: 7,
-        pointColor: { from: "color" },
+        pointColor: { from: 'color' },
         pointBorderWidth: 2,
-        pointBorderColor: { from: "serieColor" },
-        pointLabelYOffset: -2,
+        pointBorderColor: { from: 'serieColor' },
+        pointLabelYOffset: -2
       };
   }
 };

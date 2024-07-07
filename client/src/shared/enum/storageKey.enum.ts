@@ -1,4 +1,4 @@
 export enum StorageKeysEnum {
-  THEME = "theme",
-  SIDEBAR_EXPANDED = "sidebarExpanded",
+  THEME = 'theme',
+  SIDEBAR_EXPANDED = 'sidebarExpanded'
 }

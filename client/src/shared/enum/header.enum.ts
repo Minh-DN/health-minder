@@ -4,5 +4,5 @@ export enum HeaderVariantEnum {
   H3 = 24,
   H4 = 20,
   H5 = 16,
-  H6 = 14,
+  H6 = 14
 }

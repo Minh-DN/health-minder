@@ -1,2 +1,2 @@
-export * from "./metric.model";
-export * from "./runnerStat.model";
+export * from './metric.model';
+export * from './runnerStat.model';

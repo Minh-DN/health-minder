@@ -4,12 +4,12 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 export const routes = [
   {
     icon: <HomeOutlinedIcon />,
-    label: "Dashboard",
-    link: "/",
+    label: 'Dashboard',
+    link: '/dashboard'
   },
   {
     icon: <FitnessCenterIcon />,
     label: 'Workout History',
     link: '/workout-history'
-  },
+  }
 ];

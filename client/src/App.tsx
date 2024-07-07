@@ -1,32 +1,40 @@
 import '@/styles/scss/app.scss';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Route, Routes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
 import { useColorMode } from '@/styles';
 
-import { AppRoutes } from './AppRoutes';
+import { AppRoutes, AuthRequired, GuestRoutes } from './AppRoutes';
 import { Layout } from './pages';
 
 const App = () => {
   const theme = useColorMode();
 
+  const appRoutes = AppRoutes.map(({ element, ...rest }) => ({
+    ...rest,
+    element: <AuthRequired>{element}</AuthRequired>
+  }));
+
+  const routing = useRoutes([
+    {
+      path: '/',
+      element: (
+        <AuthRequired>
+          <Layout />
+        </AuthRequired>
+      ),
+      children: appRoutes
+    },
+    ...GuestRoutes
+  ]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { path, element } = route;
-            return <Route
-              key={`route-${index}`}
-              element={element}
-              path={path} />
-          })}
-        </Routes>
-      </Layout>
+      {routing}
     </ThemeProvider>
   );
-}
+};
 
 export default App;

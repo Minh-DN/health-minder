@@ -1,5 +1,4 @@
 
-
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { styled, useTheme } from '@mui/material';
@@ -12,21 +11,21 @@ import { Heading1, Title1 } from './';
 // #region data types
 type DeltaWrapperProps = {
   positive: boolean;
-}
+};
 
 type DeltaProps = {
   deltaValue: number;
-}
+};
 
 type MetricCardWrapperProps = {
   positive: boolean;
-}
+};
 
 type MetricCardProps = {
   title: string;
   value: string | number;
   priorPeriodDelta: number;
-}
+};
 // #endregion
 
 const MetricCardWrapper = styled(CustomCard)<MetricCardWrapperProps>(({ theme, positive }) => ({
@@ -35,16 +34,16 @@ const MetricCardWrapper = styled(CustomCard)<MetricCardWrapperProps>(({ theme, p
   borderBottomLeftRadius: 0,
   borderBottom: `${theme.spacing(3)} solid transparent`,
   '&:hover': {
-    borderBottom: `${theme.spacing(3)} solid ${positive ? theme.palette.success.main : theme.palette.error.main}`,
-  },
-}))
+    borderBottom: `${theme.spacing(3)} solid ${positive ? theme.palette.success.main : theme.palette.error.main}`
+  }
+}));
 
 const MetricCardContent = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  gap: theme.spacing(10),
-}))
+  gap: theme.spacing(10)
+}));
 
 const DeltaWrapper = styled('div')<DeltaWrapperProps>(({ theme, positive }) => ({
   display: 'flex',
@@ -55,18 +54,18 @@ const DeltaWrapper = styled('div')<DeltaWrapperProps>(({ theme, positive }) => (
   borderRadius: theme.spacing(16),
   fontSize: theme.fontSize[1],
   background: positive ? theme.palette.success.light : theme.palette.error.light,
-  border: `2px solid ${positive ? theme.palette.success.dark : theme.palette.error.dark}`,
-}))
+  border: `2px solid ${positive ? theme.palette.success.dark : theme.palette.error.dark}`
+}));
 
 const DeltaValue = styled('div')(({ theme }) => ({
   color: 'black',
-  fontWeight: theme.fontWeight.bolder,
-}))
+  fontWeight: theme.fontWeight.bolder
+}));
 
 const DeltaIndicator = styled('div')(({ theme }) => ({
-  marginBottom: '-5px', // to offset the extra bottm space that MUI icons have 
+  marginBottom: '-5px', // to offset the extra bottm space that MUI icons have
   color: theme.palette.primary.main
-}))
+}));
 
 const Delta = ({ deltaValue }: DeltaProps) => {
   const positive = useMemo(() => deltaValue >= 0, [deltaValue]);
@@ -78,8 +77,8 @@ const Delta = ({ deltaValue }: DeltaProps) => {
       </DeltaIndicator>
       <DeltaValue>{deltaValue}%</DeltaValue>
     </DeltaWrapper>
-  )
-}
+  );
+};
 
 const MetricCard = ({ title, value, priorPeriodDelta }: MetricCardProps) => {
   const positive = useMemo(() => priorPeriodDelta >= 0, [priorPeriodDelta]);
@@ -93,7 +92,7 @@ const MetricCard = ({ title, value, priorPeriodDelta }: MetricCardProps) => {
         {priorPeriodDelta !== undefined && <Delta deltaValue={priorPeriodDelta} />}
       </MetricCardContent>
     </MetricCardWrapper>
-  )
-}
+  );
+};
 
-export default MetricCard
+export default MetricCard;

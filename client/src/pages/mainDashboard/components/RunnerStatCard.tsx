@@ -10,19 +10,19 @@ type RunnerStatCardProps = {
   name: string;
   distanceCovered: number;
   averagePace: number;
-}
+};
 
 const RunnerAvatar = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: theme.spacing(5),
+  gap: theme.spacing(5)
 }));
 
 const RunnerStat = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'center'
 }));
 
 const RunnerStatCardWrapper = styled('div')<WrapperProps>(({ theme, bgColor }) => ({
@@ -36,7 +36,7 @@ const RunnerStatCardWrapper = styled('div')<WrapperProps>(({ theme, bgColor }) =
   backgroundColor: bgColor,
   borderRadius: '7px',
   boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
-  padding: `${theme.spacing(14)} ${theme.spacing(14)}`,
+  padding: `${theme.spacing(14)} ${theme.spacing(14)}`
 }));
 
 const RunnerStatCard = ({ name, distanceCovered, averagePace }: RunnerStatCardProps) => {
@@ -46,7 +46,7 @@ const RunnerStatCard = ({ name, distanceCovered, averagePace }: RunnerStatCardPr
   return (
     <RunnerStatCardWrapper bgColor={colors.primary[400]}>
       <RunnerAvatar>
-        <AvatarImg src={getRandomUserAvatar()} diameter="70px" sectionName="runner-stat" />
+        <AvatarImg src={getRandomUserAvatar()} diameter='70px' sectionName='runner-stat' />
         <Subheading2>{name}</Subheading2>
       </RunnerAvatar>
 
@@ -60,8 +60,7 @@ const RunnerStatCard = ({ name, distanceCovered, averagePace }: RunnerStatCardPr
         <Subheading1>{averagePace}</Subheading1>
       </RunnerStat>
     </RunnerStatCardWrapper>
-  )
-}
+  );
+};
 
-
-export default RunnerStatCard
+export default RunnerStatCard;

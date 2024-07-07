@@ -27,7 +27,7 @@ const MainDashboard = () => {
   const {
     getMainDashboardMetricCardDemoData,
     getMainDashboardLineGraphDemoData,
-    getRunnerLeaderboardData,
+    getRunnerLeaderboardData
   } = useMainDashboardApiDemo();
 
   // Use the demo data
@@ -42,38 +42,44 @@ const MainDashboard = () => {
 
     // Runner leaderboard data
     setRunnerLeaderboardStats(getRunnerLeaderboardData());
-  }, []);
+  }, [
+    getMainDashboardMetricCardDemoData,
+    getMainDashboardLineGraphDemoData,
+    getRunnerLeaderboardData
+  ]);
 
   return (
     <div className='main-dashboard__wrapper'>
       {/* PAGE HEADER */}
       <div className='main-dashboard__heading-wrapper'>
-        <Heading1 theme={theme} color={theme.palette.secondary.main}>Health & Activity Snapshot</Heading1>
+        <Heading1 theme={theme} color={theme.palette.secondary.main}>
+          Health & Activity Snapshot
+        </Heading1>
       </div>
 
       {/* KEY STATS */}
       <div className='main-dashboard__key-stats'>
-
         {/* KPI AND CHART */}
         <div className='main-dashboard__kpi-and-graph-wrapper'>
-
           {/* KPI CARDS */}
-          {metrics && <LayoutSection
-            title='Performance Indicators'
-            contentStyle={{ gap: '10px' }}
-            noMargin={true}
-          >
-            {metrics.map((metricData, index) => {
-              return (
-                <MainDashboardMetricCard
-                  title={metricData.title}
-                  value={metricData.value}
-                  priorPeriodDelta={metricData.priorPeriodDelta}
-                  key={index}
-                />
-              )
-            })}
-          </LayoutSection>}
+          {metrics && (
+            <LayoutSection
+              title='Performance Indicators'
+              contentStyle={{ gap: '10px' }}
+              noMargin={true}
+            >
+              {metrics.map((metricData, index) => {
+                return (
+                  <MainDashboardMetricCard
+                    title={metricData.title}
+                    value={metricData.value}
+                    priorPeriodDelta={metricData.priorPeriodDelta}
+                    key={index}
+                  />
+                );
+              })}
+            </LayoutSection>
+          )}
 
           {/* LINE CHART */}
           <LayoutSection
@@ -82,17 +88,14 @@ const MainDashboard = () => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              flex: 1,
+              flex: 1
             }}
             contentStyle={{
               gap: '10px',
-              flex: 1,
+              flex: 1
             }}
           >
-            <MainDashboardLineGraph
-              labels={graphLabels}
-              dataSeries={graphDataSeries}
-            />
+            <MainDashboardLineGraph labels={graphLabels} dataSeries={graphDataSeries} />
           </LayoutSection>
         </div>
 
@@ -104,7 +107,7 @@ const MainDashboard = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainDashboard
+export default MainDashboard;

@@ -9,7 +9,7 @@ import { StorageKeysEnum } from '@/shared';
  */
 const getInitialThemeMode = (): PaletteMode => {
   const savedThemeMode = localStorage.getItem(StorageKeysEnum.THEME);
-  return savedThemeMode === "light" ? "light" : "dark"; // Default to 'dark' if no theme is saved
+  return savedThemeMode === 'light' ? 'light' : 'dark'; // Default to 'dark' if no theme is saved
 };
 
 export type ThemeState = {
@@ -17,18 +17,18 @@ export type ThemeState = {
 };
 
 const initialState: ThemeState = {
-  mode: getInitialThemeMode(),
+  mode: getInitialThemeMode()
 };
 
 const themeSlice = createSlice({
-  name: "theme",
+  name: 'theme',
   initialState,
   reducers: {
     toggleColorMode(state) {
-      state.mode = state.mode === "light" ? "dark" : "light";
+      state.mode = state.mode === 'light' ? 'dark' : 'light';
       localStorage.setItem(StorageKeysEnum.THEME, state.mode);
-    },
-  },
+    }
+  }
 });
 
 export const { toggleColorMode } = themeSlice.actions;

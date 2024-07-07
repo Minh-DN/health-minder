@@ -7,15 +7,15 @@ import { Subheading2, Title1 } from './';
 // #region data types
 type CustomCardWrapperProps = {
   transparent?: boolean;
-}
+};
 
 type CustomCardTitleWrapperProps = {
   noPadding?: boolean;
-}
+};
 
 type CustomCardBodyProps = {
   padding?: string | number;
-}
+};
 
 type CustomCardProps = {
   style?: React.CSSProperties;
@@ -29,7 +29,7 @@ type CustomCardProps = {
   padding?: string | number;
   transparent?: boolean;
   onClick?: () => void;
-}
+};
 // #endregion
 
 const CustomCardWrapper = styled('div')<CustomCardWrapperProps>(({ transparent }) => ({
@@ -40,34 +40,36 @@ const CustomCardWrapper = styled('div')<CustomCardWrapperProps>(({ transparent }
 
     '&:hover': {
       border: 'none',
-      boxShadow: 'none',
-    },
+      boxShadow: 'none'
+    }
   })
-}))
+}));
 
-const CustomCardTitleWrapper = styled('div')<CustomCardTitleWrapperProps>(({ theme, noPadding }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
+const CustomCardTitleWrapper = styled('div')<CustomCardTitleWrapperProps>(
+  ({ theme, noPadding }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
 
-  padding: noPadding ? 0 : theme.spacing(8),
-  paddingBottom: 0,
-  color: 'red',
-}))
+    padding: noPadding ? 0 : theme.spacing(8),
+    paddingBottom: 0,
+    color: 'red'
+  })
+);
 
 const MainTitle = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  width: '100%',
-})
+  width: '100%'
+});
 
 const SecondaryTitle = styled('div')({});
 
 const CustomCardBody = styled('div')<CustomCardBodyProps>(({ padding }) => ({
-  padding: padding ? `${padding} !important` : `1rem !important`,
-}))
+  padding: padding ? `${padding} !important` : `1rem !important`
+}));
 
 const CustomCard: React.FC<CustomCardProps> = ({
   style,
@@ -80,11 +82,15 @@ const CustomCard: React.FC<CustomCardProps> = ({
   noPadding = false,
   padding,
   transparent = false,
-  onClick,
+  onClick
 }: CustomCardProps) => {
-
   return (
-    <CustomCardWrapper className={className} style={{ height: height }} transparent={transparent} onClick={onClick}>
+    <CustomCardWrapper
+      className={className}
+      style={{ height: height }}
+      transparent={transparent}
+      onClick={onClick}
+    >
       {title && (
         <CustomCardTitleWrapper noPadding={noPadding}>
           <MainTitle>

@@ -6,7 +6,7 @@ import RunnerStatCard from './RunnerStatCard';
 
 type RunnerLeaderboardProps = {
   data: RunnerStat[];
-}
+};
 
 const RunnerLeaderboardWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -17,15 +17,17 @@ const RunnerLeaderboardWrapper = styled('div')(({ theme }) => ({
   width: '100%',
   overflow: 'auto',
 
-  padding: `${theme.spacing(12)} 0 0 0`,
+  padding: `${theme.spacing(12)} 0 0 0`
 }));
 
 const RunnerLeaderboard = ({ data }: RunnerLeaderboardProps) => {
   return (
     <RunnerLeaderboardWrapper>
-      {data.map((runnerStat, index) => <RunnerStatCard key={index} {...runnerStat} />)}
+      {data.map((runnerStat, index) => (
+        <RunnerStatCard key={index} {...runnerStat} />
+      ))}
     </RunnerLeaderboardWrapper>
-  )
-}
+  );
+};
 
-export default RunnerLeaderboard
+export default RunnerLeaderboard;

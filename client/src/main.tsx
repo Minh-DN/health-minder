@@ -6,39 +6,30 @@ import { Provider } from 'react-redux';
 import { Navigate, RouterProvider, createHashRouter } from 'react-router-dom';
 
 import App from './App';
-import ComingSoon from './components/ComingSoon';
-import { MainDashboard } from './pages';
+import { AppRoutes, GuestRoutes } from './AppRoutes';
 import { store } from './redux';
 
-/** 
- * Using HashRouter instead of BrowserRouter 
+/**
+ * Using HashRouter instead of BrowserRouter
  * because GitHub Pages does not natively support single-page applications
  */
-const router = createHashRouter(
-  [{
-    path: "/",
+const router = createHashRouter([
+  {
+    path: '/',
     element: <App />,
-    children: [
-      {
-        index: true,
-        element: <MainDashboard />
-      },
-      {
-        path: '/workout-history',
-        element: <ComingSoon />
-      },
-      {
-        path: "*",
-        element: <Navigate to='/' replace />
-      }
-    ]
-  }],
-);
+    children: [...AppRoutes, ...GuestRoutes]
+  },
+  // Handle invalid routes
+  {
+    path: '*',
+    element: <Navigate to='/dashboard' replace />
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

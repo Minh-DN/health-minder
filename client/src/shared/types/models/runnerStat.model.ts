@@ -6,7 +6,7 @@ export interface IRunnerStat {
 
 export class RunnerStat implements IRunnerStat {
   constructor(
-    public name: string = "",
+    public name: string = '',
     public distanceCovered: number = 0,
     public averagePace: number = 0
   ) {}

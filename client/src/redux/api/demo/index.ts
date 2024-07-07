@@ -1,1 +1,1 @@
-export * from "./useMainDashboardApiDemo";
+export * from './useMainDashboardApiDemo';

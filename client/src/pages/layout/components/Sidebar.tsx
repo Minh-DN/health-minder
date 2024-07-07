@@ -17,7 +17,9 @@ const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [expanded, setExpanded] = useState(localStorage.getItem(StorageKeysEnum.SIDEBAR_EXPANDED) !== 'false');
+  const [expanded, setExpanded] = useState(
+    localStorage.getItem(StorageKeysEnum.SIDEBAR_EXPANDED) !== 'false'
+  );
 
   useEffect(() => {
     localStorage.setItem(StorageKeysEnum.SIDEBAR_EXPANDED, expanded.toString());
@@ -31,22 +33,19 @@ const Sidebar = () => {
   const calcNavLinkStyle = (isActive: boolean, label?: string) => {
     const calcPaddingLeft = () => {
       return label ? '40px' : '20px';
-    }
+    };
 
     return {
       ...(isActive && {
         color: colors.greenAccent[500],
-        borderLeft: `2px ${colors.greenAccent[500]} solid`,
+        borderLeft: `2px ${colors.greenAccent[500]} solid`
       }),
-      paddingLeft: calcPaddingLeft(),
-    }
-  }
+      paddingLeft: calcPaddingLeft()
+    };
+  };
 
   return (
-    <SidebarMenu
-      expanded={expanded}
-      style={{ backgroundColor: colors.primary[400] }}
-    >
+    <SidebarMenu expanded={expanded} style={{ backgroundColor: colors.primary[400] }}>
       {/* HEADER */}
       <SidebarMenu.Header>
         {expanded && <span className='logo-text'>HealthMinder</span>}
@@ -64,29 +63,37 @@ const Sidebar = () => {
       <SidebarMenu.Body>
         {expanded ? (
           <SidebarMenu.Nav>
-            {routes && routes.map(({ label, icon, link }, index) =>
-              <NavLink to={link} className='sidebar-menu-nav-link' key={index}
-                style={({ isActive }) => calcNavLinkStyle(isActive, label)}
-              >
-                <div className='sidebar-menu-nav-icon'>{icon}</div>
-                <div className='sidebar-menu-nav-title'>{label}</div>
-              </NavLink>
-            )}
+            {routes &&
+              routes.map(({ label, icon, link }, index) => (
+                <NavLink
+                  to={link}
+                  className='sidebar-menu-nav-link'
+                  key={index}
+                  style={({ isActive }) => calcNavLinkStyle(isActive, label)}
+                >
+                  <div className='sidebar-menu-nav-icon'>{icon}</div>
+                  <div className='sidebar-menu-nav-title'>{label}</div>
+                </NavLink>
+              ))}
           </SidebarMenu.Nav>
         ) : (
           <SidebarMenu.Nav>
-            {routes && routes.map(({ icon, link }, index) =>
-              <NavLink to={link} className='sidebar-menu-nav-link' key={index}
-                style={({ isActive }) => calcNavLinkStyle(isActive)}
-              >
-                <div className='sidebar-menu-nav-icon'>{icon}</div>
-              </NavLink>
-            )}
+            {routes &&
+              routes.map(({ icon, link }, index) => (
+                <NavLink
+                  to={link}
+                  className='sidebar-menu-nav-link'
+                  key={index}
+                  style={({ isActive }) => calcNavLinkStyle(isActive)}
+                >
+                  <div className='sidebar-menu-nav-icon'>{icon}</div>
+                </NavLink>
+              ))}
           </SidebarMenu.Nav>
         )}
       </SidebarMenu.Body>
     </SidebarMenu>
   );
-}
+};
 
 export default Sidebar;
