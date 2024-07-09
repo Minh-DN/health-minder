@@ -1,12 +1,11 @@
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import { IconButton, styled, useTheme } from '@mui/material';
+import { Button, IconButton, TextField, styled, useTheme } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { IMAGE_URLS } from '@/assets/imageUrls';
-import { Subheading1 } from '@/components';
+import { Heading1, Subheading1 } from '@/components';
 import { toggleColorMode } from '@/redux/slices';
-
 
 const PageWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -16,7 +15,9 @@ const PageWrapper = styled('div')(({ theme }) => ({
 
 const ContentWrapper = styled('div')({
   flex: 1,
-  padding: 20
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center'
 });
 
 const ImageWrapper = styled('img')({
@@ -26,12 +27,43 @@ const ImageWrapper = styled('img')({
 
 const HeaderWrapper = styled('div')({
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+  width: '100%',
+  padding: 20
 });
 
 const LogoImageWrapper = styled('img')({
   height: 50
 });
+
+const FormWrapper = styled('form')({
+  height: '80%',
+  width: '75%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 15,
+  maxWidth: 400
+});
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  '& .Mui-focused fieldset': {
+    borderColor: `${theme.palette.secondary.main} !important` // Border color when focused
+  }
+}));
+
+const CustomButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.secondary.main,
+  color: theme.palette.secondary.contrastText,
+  height: 50,
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.dark
+  },
+  '&:active': {
+    backgroundColor: theme.palette.secondary.light
+  }
+}));
 
 const SignInPage = () => {
   const theme = useTheme();
@@ -52,6 +84,26 @@ const SignInPage = () => {
             )}
           </IconButton>
         </HeaderWrapper>
+
+        <FormWrapper>
+          <Heading1>Welcome Back</Heading1>
+          <CustomTextField
+            required
+            id='username'
+            placeholder='Username'
+            fullWidth
+            variant='outlined'
+          />
+          <CustomTextField
+            required
+            id='password'
+            placeholder='Password'
+            fullWidth
+            variant='outlined'
+            type='password'
+          />
+          <CustomButton fullWidth>Sign In</CustomButton>
+        </FormWrapper>
       </ContentWrapper>
       <ImageWrapper src={IMAGE_URLS.SIGN_IN_IMAGE} />
     </PageWrapper>

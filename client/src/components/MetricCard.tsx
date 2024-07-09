@@ -1,4 +1,3 @@
-
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { styled, useTheme } from '@mui/material';
@@ -34,7 +33,9 @@ const MetricCardWrapper = styled(CustomCard)<MetricCardWrapperProps>(({ theme, p
   borderBottomLeftRadius: 0,
   borderBottom: `${theme.spacing(3)} solid transparent`,
   '&:hover': {
-    borderBottom: `${theme.spacing(3)} solid ${positive ? theme.palette.success.main : theme.palette.error.main}`
+    borderBottom: `${theme.spacing(3)} solid ${
+      positive ? theme.palette.success.main : theme.palette.error.main
+    }`
   }
 }));
 

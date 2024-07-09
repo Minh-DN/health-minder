@@ -8,7 +8,7 @@
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build --base /health-minder/",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview --base /health-minder/"
   },
   "dependencies": {

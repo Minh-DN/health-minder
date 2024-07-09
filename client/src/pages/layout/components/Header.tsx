@@ -1,15 +1,30 @@
 import '@/styles/scss/pages/layout/header.scss';
 
-
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import SearchIcon from '@mui/icons-material/Search';
-import { Autocomplete, Box, IconButton, TextField, useTheme } from '@mui/material';
+import { Autocomplete, Box, IconButton, TextField, styled, useTheme } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 import { toggleColorMode } from '@/redux/slices';
 import { tokens } from '@/styles/theme';
+
+const CustomTextField = styled(TextField)({
+  // Temporary - until search bar implementation
+  '.MuiOutlinedInput-notchedOutline': {
+    border: 'none !important'
+  },
+  '.MuiInputBase-root': {
+    padding: '0 !important'
+  },
+  '.MuiAutocomplete-popper': {
+    fontStyle: 'italic !important'
+  },
+  '.MuiAutocomplete-endAdornment': {
+    marginTop: 3
+  }
+});
 
 const Header = () => {
   const theme = useTheme();
@@ -40,7 +55,7 @@ const Header = () => {
           options={['Search is coming soon']}
           sx={{ flex: 1 }}
           renderInput={(params) => {
-            return <TextField {...params} placeholder='Search' />;
+            return <CustomTextField {...params} placeholder='Search' />;
           }}
         />
         <IconButton sx={{ p: 1 }}>

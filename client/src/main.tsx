@@ -16,6 +16,10 @@ import { store } from './redux';
 const router = createHashRouter([
   {
     path: '/',
+    element: <Navigate to='/dashboard' replace />
+  },
+  {
+    path: '*',
     element: <App />,
     children: [...AppRoutes, ...GuestRoutes]
   },
