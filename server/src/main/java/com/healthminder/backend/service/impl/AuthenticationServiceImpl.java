@@ -2,7 +2,10 @@ package com.healthminder.backend.service.impl;
 
 import com.healthminder.backend.dto.AuthenticationRequest;
 import com.healthminder.backend.dto.AuthenticationResponse;
+import com.healthminder.backend.dto.RefreshTokenRequest;
 import com.healthminder.backend.dto.RegisterRequest;
+import com.healthminder.backend.enums.UserRole;
+import com.healthminder.backend.model.JwtTokenContainer;
 import com.healthminder.backend.model.User;
 import com.healthminder.backend.repository.UserRepository;
 import com.healthminder.backend.service.AuthenticationService;
@@ -22,38 +25,62 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
-            )
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
         );
         var user = userRepository.findByUsername(request.getUsername())
-            .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+                .orElseThrow();
+        var jwtTokens = jwtService.generateTokens(user);
 
         return AuthenticationResponse.builder()
-            .token(jwtToken)
-            .build();
+                .accessToken(jwtTokens.getAccessToken())
+                .refreshToken(jwtTokens.getRefreshToken())
+                .build();
     }
 
+    @Override
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
-            .firstName(request.getFirstName())
-            .lastName(request.getLastName())
-            .username(request.getUsername())
-            .password(passwordEncoder.encode(request.getPassword()))
-            .accountNonExpired(true)
-            .accountNonLocked(true)
-            .credentialsNonExpired(true)
-            .enabled(true)
-            .build();
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .accountNonExpired(true)
+                .accountNonLocked(true)
+                .credentialsNonExpired(true)
+                .enabled(true)
+                .role(UserRole.USER)
+                .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        var jwtTokens = jwtService.generateTokens(user);
 
         return AuthenticationResponse.builder()
-            .token(jwtToken)
-            .build();
+                .accessToken(jwtTokens.getAccessToken())
+                .refreshToken(jwtTokens.getRefreshToken())
+                .build();
     }
+
+    @Override
+    public AuthenticationResponse refresh(RefreshTokenRequest request) {
+        String refreshToken = request.getRefreshToken();
+        if (jwtService.isRefreshTokenValid(refreshToken)) {
+            String username = jwtService.extractUsername(refreshToken);
+            User user = userRepository.findByUsername((username))
+                    .orElseThrow();
+            JwtTokenContainer jwtTokens = jwtService.generateTokens(user);
+            return AuthenticationResponse.builder()
+                    .accessToken(jwtTokens.getAccessToken())
+                    .refreshToken(jwtTokens.getRefreshToken())
+                    .build();
+        } else {
+            throw new RuntimeException("Invalid refresh token");
+        }
+    }
+
+    // TODO: implement register for admin
 }

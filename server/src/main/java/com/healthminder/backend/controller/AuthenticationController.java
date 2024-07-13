@@ -2,6 +2,7 @@ package com.healthminder.backend.controller;
 
 import com.healthminder.backend.dto.AuthenticationRequest;
 import com.healthminder.backend.dto.AuthenticationResponse;
+import com.healthminder.backend.dto.RefreshTokenRequest;
 import com.healthminder.backend.dto.RegisterRequest;
 import com.healthminder.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,10 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthenticationResponse> refresh(@RequestBody RefreshTokenRequest request) {
+        return ResponseEntity.ok(authenticationService.refresh(request));
     }
 }
