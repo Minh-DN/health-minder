@@ -1,11 +1,14 @@
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { Button, IconButton, TextField, styled, useTheme } from '@mui/material';
+import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { IMAGE_URLS } from '@/assets/imageUrls';
 import { Heading1, Subheading1 } from '@/components';
-import { toggleColorMode } from '@/redux/slices';
+import { signIn } from '@/redux/api/authApi';
+import { setAuthTokens, toggleColorMode } from '@/redux/slices';
 
 const PageWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -68,6 +71,23 @@ const CustomButton = styled(Button)(({ theme }) => ({
 const SignInPage = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: ''
+    },
+    onSubmit: async (values) => {
+      try {
+        const response = await signIn(values);
+        dispatch(setAuthTokens(response.data));
+        navigate('/dashboard');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  });
 
   return (
     <PageWrapper>
@@ -85,7 +105,7 @@ const SignInPage = () => {
           </IconButton>
         </HeaderWrapper>
 
-        <FormWrapper>
+        <FormWrapper onSubmit={formik.handleSubmit}>
           <Heading1>Welcome Back</Heading1>
           <CustomTextField
             required
@@ -93,7 +113,10 @@ const SignInPage = () => {
             placeholder='Username'
             fullWidth
             variant='outlined'
+            onChange={formik.handleChange}
+            value={formik.values.username}
           />
+          {/* TODO: implement error handling */}
           <CustomTextField
             required
             id='password'
@@ -101,8 +124,12 @@ const SignInPage = () => {
             fullWidth
             variant='outlined'
             type='password'
+            onChange={formik.handleChange}
+            value={formik.values.password}
           />
-          <CustomButton fullWidth>Sign In</CustomButton>
+          <CustomButton type='submit' fullWidth>
+            Sign In
+          </CustomButton>
         </FormWrapper>
       </ContentWrapper>
       <ImageWrapper src={IMAGE_URLS.SIGN_IN_IMAGE} />

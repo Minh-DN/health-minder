@@ -64,7 +64,7 @@ const DeltaValue = styled('div')(({ theme }) => ({
 }));
 
 const DeltaIndicator = styled('div')(({ theme }) => ({
-  marginBottom: '-5px', // to offset the extra bottm space that MUI icons have
+  marginBottom: '-5px', // to offset the extra bottom space that MUI icons have
   color: theme.palette.primary.main
 }));
 
