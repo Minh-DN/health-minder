@@ -23,6 +23,7 @@
     "dayjs": "^1.11.10",
     "dotenv": "^16.4.5",
     "formik": "^2.4.6",
+    "jwt-decode": "^4.0.0",
     "numeral": "^2.0.6",
     "react": "^18.2.0",
     "react-bootstrap-sidebar-menu": "^2.0.3",

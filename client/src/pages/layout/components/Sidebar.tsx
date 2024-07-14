@@ -1,12 +1,15 @@
 import '@/styles/scss/pages/layout/sidebar.scss';
 
+import LogoutIcon from '@mui/icons-material/Logout';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { IconButton, useTheme } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import TempAvatarImage from '@/assets/userAvatars/user-avatar-1.png';
+import { clearAuth } from '@/redux/slices';
 import { StorageKeysEnum } from '@/shared';
 import { tokens } from '@/styles/theme';
 
@@ -16,6 +19,8 @@ import { routes } from './routes';
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [expanded, setExpanded] = useState(
     localStorage.getItem(StorageKeysEnum.SIDEBAR_EXPANDED) !== 'false'
@@ -27,6 +32,11 @@ const Sidebar = () => {
 
   const handleSidebarToggle = () => {
     setExpanded(!expanded);
+  };
+
+  const handleSignOut = () => {
+    dispatch(clearAuth());
+    navigate('/sign-in');
   };
 
   // Calculate the padding to offset the left border of selected menu item
@@ -92,6 +102,13 @@ const Sidebar = () => {
           </SidebarMenu.Nav>
         )}
       </SidebarMenu.Body>
+
+      {/* Footer */}
+      <SidebarMenu.Footer>
+        <IconButton onClick={handleSignOut}>
+          <LogoutIcon />
+        </IconButton>
+      </SidebarMenu.Footer>
     </SidebarMenu>
   );
 };

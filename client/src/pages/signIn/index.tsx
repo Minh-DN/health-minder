@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { IMAGE_URLS } from '@/assets/imageUrls';
 import { Heading1, Subheading1 } from '@/components';
 import { signIn } from '@/redux/api/authApi';
-import { setAuthTokens, toggleColorMode } from '@/redux/slices';
+import { setAuth, toggleColorMode } from '@/redux/slices';
 
 const PageWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -81,7 +81,7 @@ const SignInPage = () => {
     onSubmit: async (values) => {
       try {
         const response = await signIn(values);
-        dispatch(setAuthTokens(response.data));
+        dispatch(setAuth(response.data));
         navigate('/dashboard');
       } catch (error) {
         console.log(error);
