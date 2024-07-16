@@ -1,11 +1,7 @@
 package com.healthminder.backend.service.impl;
 
-import com.healthminder.backend.dto.AuthenticationRequest;
-import com.healthminder.backend.dto.AuthenticationResponse;
-import com.healthminder.backend.dto.RefreshTokenRequest;
-import com.healthminder.backend.dto.RegisterRequest;
+import com.healthminder.backend.dto.*;
 import com.healthminder.backend.enums.UserRole;
-import com.healthminder.backend.model.JwtTokenContainer;
 import com.healthminder.backend.model.User;
 import com.healthminder.backend.repository.UserRepository;
 import com.healthminder.backend.service.AuthenticationService;

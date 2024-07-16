@@ -1,7 +1,7 @@
 package com.healthminder.backend.service.impl;
 
+import com.healthminder.backend.dto.JwtTokenContainer;
 import com.healthminder.backend.enums.JwtTokenType;
-import com.healthminder.backend.model.JwtTokenContainer;
 import com.healthminder.backend.model.User;
 import com.healthminder.backend.service.JwtService;
 import io.jsonwebtoken.Claims;

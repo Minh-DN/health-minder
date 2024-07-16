@@ -1,4 +1,4 @@
-package com.healthminder.backend.model;
+package com.healthminder.backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

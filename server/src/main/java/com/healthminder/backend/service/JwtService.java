@@ -1,6 +1,6 @@
 package com.healthminder.backend.service;
 
-import com.healthminder.backend.model.JwtTokenContainer;
+import com.healthminder.backend.dto.JwtTokenContainer;
 import com.healthminder.backend.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
