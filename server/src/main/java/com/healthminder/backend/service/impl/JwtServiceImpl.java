@@ -1,6 +1,6 @@
 package com.healthminder.backend.service.impl;
 
-import com.healthminder.backend.dto.JwtTokenContainer;
+import com.healthminder.backend.dto.JwtContainer;
 import com.healthminder.backend.enums.JwtTokenType;
 import com.healthminder.backend.model.User;
 import com.healthminder.backend.service.JwtService;
@@ -33,11 +33,11 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
-    public JwtTokenContainer generateTokens(User user) {
+    public JwtContainer generateTokens(User user) {
         String accessToken = generateToken(user, JwtTokenType.ACCESS);
         String refreshToken = generateToken(user, JwtTokenType.REFRESH);
 
-        return new JwtTokenContainer(accessToken, refreshToken);
+        return new JwtContainer(accessToken, refreshToken);
     }
 
     @Override
@@ -66,6 +66,7 @@ public class JwtServiceImpl implements JwtService {
         Date expirationTimeAsDate = new Date(currentTimeMillis + expirationDuration);
 
         Map<String, Object> extraClaims = Map.of(
+                "userId", user.getId(),
                 "tokenType", tokenType,
                 "firstName", user.getFirstName(),
                 "lastName", user.getLastName(),

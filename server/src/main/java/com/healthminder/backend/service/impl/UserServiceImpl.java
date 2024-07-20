@@ -13,5 +13,5 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 }

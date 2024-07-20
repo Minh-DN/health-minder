@@ -68,7 +68,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             String username = jwtService.extractUsername(refreshToken);
             User user = userRepository.findByUsername((username))
                     .orElseThrow();
-            JwtTokenContainer jwtTokens = jwtService.generateTokens(user);
+            JwtContainer jwtTokens = jwtService.generateTokens(user);
             return AuthenticationResponse.builder()
                     .accessToken(jwtTokens.getAccessToken())
                     .refreshToken(jwtTokens.getRefreshToken())

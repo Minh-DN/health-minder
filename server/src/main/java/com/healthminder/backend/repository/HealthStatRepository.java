@@ -6,8 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
+import java.time.LocalDate;
+import java.util.Optional;
 
+@Repository
 public interface HealthStatRepository extends MongoRepository<HealthStat, String> {
-    Page<HealthStat> findByUserIdOrderByDateDesc(String userId, Pageable pageable);
+    Page<HealthStat> findByUserId(String userId, Pageable pageable);
+
+    Optional<HealthStat> findByUserIdAndDate(String userId, LocalDate date);
 }
