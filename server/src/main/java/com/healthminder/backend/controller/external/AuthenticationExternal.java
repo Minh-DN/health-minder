@@ -1,4 +1,4 @@
-package com.healthminder.backend.controller;
+package com.healthminder.backend.controller.external;
 
 import com.healthminder.backend.constants.ApiConstants;
 import com.healthminder.backend.dto.AuthenticationRequest;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(ApiConstants.API_BASE_PATH + "/auth")
-public class AuthenticationController {
+@RequestMapping(ApiConstants.API_BASE_PATH + "/external/auth")
+public class AuthenticationExternal {
 
     private final AuthenticationService authenticationService;
 
