@@ -1,0 +1,13 @@
+spring.application.name=
+# DATABASE
+spring.data.mongodb.uri=
+spring.data.mongodb.database=
+# JWT
+jwt.secret=
+# SWAGGER
+springdoc.api-docs.enabled=
+springdoc.swagger-ui.enabled=
+springdoc.api-docs.path=
+springdoc.swagger-ui.path=
+# API
+internal.api.key=
