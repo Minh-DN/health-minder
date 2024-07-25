@@ -16,10 +16,10 @@ public class HealthStatResponse {
     private String userId;
     private LocalDate date;
     private Integer stepsTaken;
-    // Time values are stored in hours
-    private Double sleepTime;
-    private Double activeTime;
-    private Double computerScreenTime;
-    private Double phoneScreenTime;
-    private Double sedentaryTime;
+    // Time values are stored in seconds
+    private Integer sleepTime;
+    private Integer activeTime;
+    private Integer computerScreenTime;
+    private Integer phoneScreenTime;
+    private Integer sedentaryTime;
 }

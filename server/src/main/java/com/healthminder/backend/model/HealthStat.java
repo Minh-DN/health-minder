@@ -30,12 +30,12 @@ public class HealthStat {
     private LocalDate date;
     private int stepsTaken;
 
-    // Time values are stored in hours
-    private double sleepTime;
-    private double activeTime;
-    private double computerScreenTime;
-    private double phoneScreenTime;
-    private double sedentaryTime;
+    // Time values are stored in seconds
+    private int sleepTime;
+    private int activeTime;
+    private int computerScreenTime;
+    private int phoneScreenTime;
+    private int sedentaryTime;
 
     @CreatedDate
     private Instant createdAt;
