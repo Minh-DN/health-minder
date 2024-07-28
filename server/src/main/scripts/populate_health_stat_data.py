@@ -82,18 +82,20 @@ if __name__ == "__main__":
     args_parser = argparse.ArgumentParser()
     # Script currently populates for each day from the from_date to the current day
     args_parser.add_argument('--from_date', type=str, required=True)
+    args_parser.add_argument('--to_date', type=str, required=True)
     args_parser.add_argument('--user_id', type=str, required=True)
     args_parser.add_argument('--test', type=str, required=True)
     args = args_parser.parse_args()
 
     # Read args
     from_date_str = args.from_date
+    to_date_str = args.to_date
     test = args.test.lower() != 'false'
     user_id = args.user_id
 
     # Parse the from_date
     from_date = datetime.strptime(from_date_str, '%d-%m-%Y').date()
-    current_date = datetime.today().date()
+    to_date = datetime.strptime(to_date_str, '%d-%m-%Y').date()
 
     # Read properties
     properties = read_properties(APP_PROPERTIES_FILE_PATH)
@@ -101,7 +103,7 @@ if __name__ == "__main__":
 
     # Loop through each day and send a request
     current_day = from_date
-    while current_day <= current_date:
+    while current_day <= to_date:
         date_str = current_day.isoformat()
         add_a_health_stat_to_a_worker(user_id, date_str, api_key, test)
         current_day += timedelta(days=1)
